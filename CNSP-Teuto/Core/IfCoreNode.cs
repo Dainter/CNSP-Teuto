@@ -12,5 +12,8 @@ namespace CNSP.Core
         NodeType Type { get; }
         List<IfCoreEdge> OutBound { get; }
         List<IfCoreEdge> InBound { get; }
+
+        bool RegisterInbound(IfCoreEdge newEdge);
+        bool UnRegisterInbound(IfCoreEdge curEdge);
     }
 }

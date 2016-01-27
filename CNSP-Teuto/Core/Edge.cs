@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace CNSP.Core
 {
-    public class Edge//复杂网络连边类：负责存储网络连边信息
+    public class Edge : IfCoreEdge//复杂网络连边类：负责存储网络连边信息
     {
         //共享变量
         static int intMaxEdgeNum = 0;
@@ -14,8 +14,9 @@ namespace CNSP.Core
         int intEdgeNum;
         IfCoreNode nodeStart;//连边起点
         IfCoreNode nodeEnd;//连边终点
+        EdgeType edgeType;//连边类型
         //属性//////////////////////////
-        public int EdgeNum
+        public int Number
         {
             get
             {
@@ -44,12 +45,19 @@ namespace CNSP.Core
                 nodeEnd = value;
             }
         }
-
+        public EdgeType Type
+        {
+            get
+            {
+                return edgeType;
+            }
+        }
         //方法/////////////////////////
         //复杂网络连边类Edge构造函数
-        public Edge()//构造函数 对三个变量进行赋值
+        public Edge(EdgeType newType)//构造函数 对三个变量进行赋值
         {
             this.intEdgeNum = intMaxEdgeNum;
+            this.edgeType = newType;
             intMaxEdgeNum++;
         }
 

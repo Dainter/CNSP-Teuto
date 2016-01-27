@@ -35,11 +35,14 @@ namespace CNSP
             DistrictNode node6 = new DistrictNode("波美拉尼亚");
             node5.Merger(node6);
             strTerritory = node5.ShowTerritory();
-
+            
             node5.Cession(node6);
             strTerritory = node5.ShowTerritory();
             node1.Merger(node6);
             strTerritory = node1.ShowTerritory();
+            CharNode cNode = new CharNode("Friedrich", "将军", 28);
+            TroopNode tNode = new TroopNode("1st Eagle", 1700);
+            cNode.Appoint(tNode);
             return;
         }
     }

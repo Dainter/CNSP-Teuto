@@ -8,6 +8,7 @@ namespace CNSP.Core
     public enum EdgeTypeEnum
     {
         Rule = 0x01,
+        Lead = 0x02,
         Neutral = 0x10,
         Allies = 0x12,
         Hostile = 0x14,
@@ -41,6 +42,8 @@ namespace CNSP.Core
             {
                 case "统治":
                     return EdgeTypeEnum.Rule;
+                case "率领":
+                    return EdgeTypeEnum.Lead;
                 case "中立":
                     return EdgeTypeEnum.Neutral;
                 case "联盟":
@@ -58,6 +61,8 @@ namespace CNSP.Core
             {
                 case EdgeTypeEnum.Rule:
                     return "统治";
+                case EdgeTypeEnum.Lead:
+                    return "率领";
                 case EdgeTypeEnum.Neutral:
                     return "中立";
                 case EdgeTypeEnum.Allies:

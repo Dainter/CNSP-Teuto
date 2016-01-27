@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Platform\CharNode.cs" />
     <Compile Include="Platform\DistrictNode.cs" />
+    <Compile Include="Platform\LeadEdge.cs" />
     <Compile Include="Platform\NationNode.cs" />
     <Compile Include="Platform\RuleEdge.cs" />
     <Compile Include="Platform\TroopNode.cs" />
@@ -82,6 +83,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

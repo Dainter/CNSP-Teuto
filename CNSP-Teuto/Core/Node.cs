@@ -5,16 +5,18 @@ using System.Text;
 using System.Collections;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace CNSP.Core
 {
-    public class Node//复杂网络节点类：负责存储单一网络节点的信息，并向上层类提供功能接口函数
+    public class Node:IfCoreNode//复杂网络节点类：负责存储单一网络节点的信息，并向上层类提供功能接口函数
     {
         //共享变量
         static int intMaxNodeNum = 0;
         //成员变量
         int intNodeNum;                           //节点编号
+        NodeType nodeType;
         List<IfCoreEdge> OutLink;       //连边 使用字典结构存放（目标节点号，连边对象）
         List<IfCoreEdge> InLink;
         Point potLoc;                        //节点位置
@@ -24,6 +26,13 @@ namespace CNSP.Core
             get
             {
                 return intNodeNum;
+            }
+        }
+        public NodeType Type
+        {
+            get
+            {
+                return nodeType;
             }
         }
         public int Degree
@@ -60,10 +69,11 @@ namespace CNSP.Core
         }
         //方法///////////////////////////////
         //复杂网络节点类Node构造函数
-        public Node ()    //构造函数
+        public Node (NodeType newType)    //构造函数
         {
             this.intNodeNum = intMaxNodeNum;
             this.potLoc = new Point(0,0);
+            this.nodeType = newType;
             OutLink = new List<IfCoreEdge>();
             InLink = new List<IfCoreEdge>();
             intMaxNodeNum++;
@@ -175,5 +185,57 @@ namespace CNSP.Core
             return false;
         }
 
+        protected bool BuildRelationship(IfCoreNode tarNode, IfCoreEdge newEdge)
+        {
+            try
+            {
+                newEdge.Start = this;
+                newEdge.End = tarNode;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "警告", MessageBoxButtons.OK);
+                return false;
+            }
+            if (this.AddEdge(newEdge) == false)
+            {
+                return false;
+            }
+            if (tarNode.RegisterInbound(newEdge) == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        protected bool RemoveRelationship(IfCoreNode tarNode)
+        {
+            IfCoreEdge curEdge = null;
+            foreach (IfCoreEdge edge in this.OutBound)
+            {
+                if (edge.Type.Type != EdgeTypeEnum.Rule)
+                {
+                    continue;
+                }
+                if (edge.End.Number == tarNode.Number)
+                {
+                    curEdge = edge;
+                    break;
+                }
+            }
+            if (curEdge == null)
+            {
+                return false;
+            }
+            if (this.DecEdge(curEdge) == false)
+            {
+                return false;
+            }
+            if (tarNode.UnRegisterInbound(curEdge) == false)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
