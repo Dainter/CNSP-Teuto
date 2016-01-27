@@ -106,10 +106,39 @@ namespace CNSP.Core
         }
 
         //去除连边
-        public bool DecEdge(int iTarget)//去除连边
+        public bool DecEdge(IfCoreEdge curEdge)
         {
+            if (curEdge == null)
+            {
+                return false;
+            }
+            if (curEdge.Start.Number != intNodeNum || curEdge.End.Number == intNodeNum)//检测条件：当前节点与目标节点不相连，且目标节点不是当前节点
+            {
+                return false;
+            }
+            if (OutBoundContainsEdge(curEdge) == true)
+            {
+                OutLink.Remove(curEdge);   
+            }
+            return true;
+        }
 
-            return false;
+        //Inbound注销
+        public bool UnRegisterInbound(IfCoreEdge curEdge)
+        {
+            if (curEdge == null)
+            {
+                return false;
+            }
+            if (curEdge.End.Number != intNodeNum || curEdge.Start.Number == intNodeNum)//检测条件：当前节点与目标节点不相连，且目标节点不是当前节点
+            {
+                return false;
+            }
+            if (InBoundContainsEdge(curEdge) == true)
+            {
+                InLink.Remove(curEdge);
+            }
+            return true;
         }
 
         //返回OutBound是否包含和目标节点间的连边

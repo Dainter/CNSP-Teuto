@@ -91,6 +91,18 @@ namespace CNSP.Platform
             return node.RegisterInbound(newEdge);
         }
 
+        //去除连边
+        bool DecEdge(IfCoreEdge curEdge)//去除连边
+        {
+            return node.DecEdge(curEdge);
+        }
+
+        //Inbound注销
+        public bool UnRegisterInbound(IfCoreEdge curEdge)
+        {
+            return node.UnRegisterInbound(curEdge);
+        }
+
         //兼并地区
         public bool Merger(DistrictNode newRegion)
         {
@@ -110,6 +122,37 @@ namespace CNSP.Platform
                 return false;
             }
             if(newRegion.RegisterInbound(newRule) == false)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //割让地区
+        public bool Cession(DistrictNode curRegion)
+        {
+            IfCoreEdge curEdge = null;
+            foreach (IfCoreEdge edge in this.node.OutBound)
+            {
+                if (edge.Type.Type != EdgeTypeEnum.Rule)
+                {
+                    continue;
+                }
+                if (edge.End.Number == curRegion.Number)
+                {
+                    curEdge = edge;
+                    break;
+                }
+            }
+            if (curEdge == null)
+            {
+                return false;
+            }
+            if(this.DecEdge(curEdge) == false)
+            {
+                return false;
+            }
+            if (curRegion.UnRegisterInbound(curEdge) == false)
             {
                 return false;
             }

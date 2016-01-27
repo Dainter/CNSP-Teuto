@@ -97,7 +97,7 @@ namespace CNSP.Platform
             intPolulation = 0;
         }
         //增加连边
-        public bool AddEdge(IfCoreEdge newEdge)
+        bool AddEdge(IfCoreEdge newEdge)
         {
             return node.AddEdge(newEdge);
         }
@@ -106,6 +106,18 @@ namespace CNSP.Platform
         public bool RegisterInbound(IfCoreEdge newEdge)
         {
             return node.RegisterInbound(newEdge);
+        }
+
+        //去除连边
+        bool DecEdge(IfCoreEdge curEdge)
+        {
+            return node.DecEdge(curEdge);
+        }
+
+        //Inbound注销
+        public bool UnRegisterInbound(IfCoreEdge curEdge)
+        {
+            return node.UnRegisterInbound(curEdge);
         }
 
     }
