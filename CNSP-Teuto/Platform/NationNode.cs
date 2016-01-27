@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using CNSP.Core;
+using CNSP.Core.Node;
+using CNSP.Core.Edge;
 
 namespace CNSP.Platform
 {
@@ -27,7 +28,7 @@ namespace CNSP.Platform
             }
             strName = sName;
         }
-
+        /*
         //兼并地区
         public bool Merger(DistrictNode newRegion)
         {
@@ -64,5 +65,6 @@ namespace CNSP.Platform
 
             return strResult;
         }
+    */
     }
 }

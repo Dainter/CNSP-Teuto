@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using CNSP.Core;
+using CNSP.Core.Node;
+using CNSP.Core.Edge;
 
 namespace CNSP.Platform
 {

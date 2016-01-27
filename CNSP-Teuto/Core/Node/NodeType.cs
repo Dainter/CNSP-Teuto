@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CNSP.Core
+namespace CNSP.Core.Node
 {
     public enum NodeTypeEnum
     {

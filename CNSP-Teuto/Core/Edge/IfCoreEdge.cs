@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CNSP.Core.Node;
 
-namespace CNSP.Core
+namespace CNSP.Core.Edge
 {
     public interface IfCoreEdge
     {
@@ -11,5 +12,6 @@ namespace CNSP.Core
         IfCoreNode Start { get; set; }
         IfCoreNode End { get; set; }
         EdgeType Type { get; }
+        bool IsInUse { get; set; }
     }
 }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using CNSP.Core.Node;
 
-namespace CNSP.Core
+namespace CNSP.Core.Edge
 {
     public class Edge : IfCoreEdge//复杂网络连边类：负责存储网络连边信息
     {
@@ -15,6 +16,7 @@ namespace CNSP.Core
         IfCoreNode nodeStart;//连边起点
         IfCoreNode nodeEnd;//连边终点
         EdgeType edgeType;//连边类型
+        bool bolIsInUse;
         //属性//////////////////////////
         public int Number
         {
@@ -52,12 +54,24 @@ namespace CNSP.Core
                 return edgeType;
             }
         }
+        public bool IsInUse
+        {
+            get
+            {
+                return bolIsInUse;
+            }
+            set
+            {
+                bolIsInUse = value;
+            }
+        }
         //方法/////////////////////////
         //复杂网络连边类Edge构造函数
         public Edge(EdgeType newType)//构造函数 对三个变量进行赋值
         {
             this.intEdgeNum = intMaxEdgeNum;
             this.edgeType = newType;
+            bolIsInUse = true;
             intMaxEdgeNum++;
         }
 

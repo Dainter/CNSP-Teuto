@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using CNSP.Core;
+using CNSP.Core.Node;
+using CNSP.Core.Edge;
 
 namespace CNSP.Platform
 {
@@ -33,7 +34,7 @@ namespace CNSP.Platform
             strName = sName;
             intAge = iAge;
         }
-
+        /*
         //任命率领军队
         public bool Appoint(TroopNode newTroop)
         {
@@ -53,6 +54,6 @@ namespace CNSP.Platform
             }
             return this.RemoveRelationship(curTroop); ;
         }
-
+        */
     }
 }
