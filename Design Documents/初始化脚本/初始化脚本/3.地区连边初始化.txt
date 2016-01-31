@@ -1,0 +1,159 @@
+        void Add(int iStart, int iEnd)
+        {
+            AddEdge(iStart, iEnd);
+            AddEdge(iEnd, iStart);
+        }
+
+        void AddEdge(int iStart, int iEnd)
+        {
+            IfCoreNode nodeStart, nodeEnd;
+            ConnectEdge newEdge = new ConnectEdge();
+            nodeStart = zhanguo.GetNodeAtIndex(iStart);
+            nodeEnd = zhanguo.GetNodeAtIndex(iEnd);
+            zhanguo.AddEdge(nodeStart, nodeEnd, newEdge);
+
+        }        
+
+void Network_Init()
+        {
+            Add(0, 1);
+            Add(2, 1);
+            Add(3, 2);
+            Add(4, 3);
+            Add(5, 3);
+            Add(5, 4);
+            Add(6, 5);
+            Add(7, 5);
+            Add(7, 6);
+            Add(8, 6);
+            Add(9, 6);
+            Add(9, 7);
+            Add(9, 8);
+            Add(10, 6);
+            Add(10, 8);
+        }
+
+        void Network_Init()
+        {
+            Add(12, 9);
+            Add(12, 11);
+            Add(13, 8);
+            Add(13, 11);
+            Add(13, 12);
+            Add(14, 13);
+            Add(15, 11);
+            Add(16, 11);
+            Add(16, 13);
+            Add(16, 14);
+            Add(16, 15);
+            Add(17, 16);
+            Add(18, 15);
+            Add(18, 17);
+            Add(19, 12);
+        }
+
+        void Network_Init()
+        {
+            Add(20, 11);
+            Add(20, 19);
+            Add(21, 7);
+            Add(21, 19);
+            Add(22, 19);
+            Add(22, 20);
+            Add(22, 21);
+            Add(23, 7);
+            Add(23, 9);
+            Add(23, 19);
+            Add(24, 11);
+            Add(25, 20);
+            Add(25, 22);
+            Add(25, 24);
+            Add(26, 21);
+            Add(26, 22);
+        }
+
+        void Network_Init()
+        {
+            Add(27, 2);
+            Add(27, 3);
+            Add(27, 5);
+            Add(27, 7);
+            Add(27, 21);
+            Add(28, 21);
+            Add(28, 26);
+            Add(28, 27);
+            Add(29, 26);
+            Add(29, 28);
+            Add(30, 22);
+            Add(30, 24);
+            Add(30, 25);
+
+        }
+
+        void Network_Init()
+        {
+            Add(31, 30);
+            Add(32, 30);
+            Add(32, 31);
+            Add(33, 15);
+            Add(33, 24);
+            Add(34, 18);
+            Add(34, 33);
+            Add(35, 24);
+            Add(35, 30);
+            Add(35, 32);
+            Add(35, 33);
+            Add(36, 32);
+            Add(36, 35);
+            Add(37, 36);
+            Add(38, 35);
+            Add(38, 37);
+            Add(39, 33);
+            Add(39, 38);
+            Add(40, 36);
+            Add(40, 37);
+        }
+
+        void Network_Init()
+        {
+            Add(41, 22);
+            Add(41, 26);
+            Add(41, 29);
+            Add(41, 31);
+            Add(41, 32);
+            Add(41, 40);
+            Add(42, 40);
+            Add(42, 41);
+            Add(43, 40);
+            Add(43, 42);
+            Add(44, 37);
+            Add(44, 43);
+            Add(45, 37);
+            Add(45, 44);
+
+        }
+
+        void Network_Init()
+        {
+            Add(46, 18);
+            Add(46, 39);
+            Add(47, 17);
+            Add(47, 46);
+            Add(48, 46);
+            Add(48, 47);
+            Add(49, 39);
+            Add(49, 46);
+            Add(49, 48);
+            Add(50, 38);
+            Add(50, 39);
+            Add(50, 49);
+            Add(51, 37);
+            Add(51, 38);
+            Add(51, 45);
+            Add(51, 50);
+        }
+
+
+
+
+

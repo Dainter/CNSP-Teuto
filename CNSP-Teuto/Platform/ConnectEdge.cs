@@ -8,11 +8,11 @@ using CNSP.Core.User;
 
 namespace CNSP.Platform
 {
-    public class LeadEdge : Edge//率领关系连边
+    public class ConnectEdge: Edge//连通关系连边
     {
         //构造函数
-        public LeadEdge()
-            : base(new EdgeType(EdgeTypeEnum.Lead))
+        public ConnectEdge()
+            : base(new EdgeType(EdgeTypeEnum.Connect))
         {
 
         }

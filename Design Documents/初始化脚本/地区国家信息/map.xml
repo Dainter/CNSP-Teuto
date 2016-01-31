@@ -1,0 +1,584 @@
+<Network Nodes="52" Edges="109">
+  <Node num="0">
+    <Degree>1</Degree>
+    <Xpos>556</Xpos>
+    <Ypos>10</Ypos>
+    <Edges>
+      <Edge Target="1">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="1">
+    <Degree>2</Degree>
+    <Xpos>479</Xpos>
+    <Ypos>16</Ypos>
+    <Edges>
+      <Edge Target="0">1</Edge>
+      <Edge Target="2">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="2">
+    <Degree>3</Degree>
+    <Xpos>439</Xpos>
+    <Ypos>19</Ypos>
+    <Edges>
+      <Edge Target="1">1</Edge>
+      <Edge Target="3">1</Edge>
+      <Edge Target="27">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="3">
+    <Degree>4</Degree>
+    <Xpos>418</Xpos>
+    <Ypos>38</Ypos>
+    <Edges>
+      <Edge Target="2">1</Edge>
+      <Edge Target="4">1</Edge>
+      <Edge Target="5">1</Edge>
+      <Edge Target="27">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="4">
+    <Degree>2</Degree>
+    <Xpos>378</Xpos>
+    <Ypos>15</Ypos>
+    <Edges>
+      <Edge Target="3">1</Edge>
+      <Edge Target="5">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="5">
+    <Degree>5</Degree>
+    <Xpos>384</Xpos>
+    <Ypos>49</Ypos>
+    <Edges>
+      <Edge Target="3">1</Edge>
+      <Edge Target="4">1</Edge>
+      <Edge Target="6">1</Edge>
+      <Edge Target="7">1</Edge>
+      <Edge Target="27">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="6">
+    <Degree>5</Degree>
+    <Xpos>338</Xpos>
+    <Ypos>29</Ypos>
+    <Edges>
+      <Edge Target="5">1</Edge>
+      <Edge Target="7">1</Edge>
+      <Edge Target="8">1</Edge>
+      <Edge Target="9">1</Edge>
+      <Edge Target="10">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="7">
+    <Degree>6</Degree>
+    <Xpos>372</Xpos>
+    <Ypos>85</Ypos>
+    <Edges>
+      <Edge Target="5">1</Edge>
+      <Edge Target="6">1</Edge>
+      <Edge Target="9">1</Edge>
+      <Edge Target="21">1</Edge>
+      <Edge Target="23">1</Edge>
+      <Edge Target="27">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="8">
+    <Degree>4</Degree>
+    <Xpos>282</Xpos>
+    <Ypos>40</Ypos>
+    <Edges>
+      <Edge Target="6">1</Edge>
+      <Edge Target="9">1</Edge>
+      <Edge Target="10">1</Edge>
+      <Edge Target="13">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="9">
+    <Degree>5</Degree>
+    <Xpos>317</Xpos>
+    <Ypos>65</Ypos>
+    <Edges>
+      <Edge Target="6">1</Edge>
+      <Edge Target="7">1</Edge>
+      <Edge Target="8">1</Edge>
+      <Edge Target="12">1</Edge>
+      <Edge Target="23">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="10">
+    <Degree>2</Degree>
+    <Xpos>254</Xpos>
+    <Ypos>6</Ypos>
+    <Edges>
+      <Edge Target="6">1</Edge>
+      <Edge Target="8">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="11">
+    <Degree>6</Degree>
+    <Xpos>237</Xpos>
+    <Ypos>186</Ypos>
+    <Edges>
+      <Edge Target="12">1</Edge>
+      <Edge Target="13">1</Edge>
+      <Edge Target="15">1</Edge>
+      <Edge Target="16">1</Edge>
+      <Edge Target="20">1</Edge>
+      <Edge Target="24">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="12">
+    <Degree>4</Degree>
+    <Xpos>263</Xpos>
+    <Ypos>138</Ypos>
+    <Edges>
+      <Edge Target="9">1</Edge>
+      <Edge Target="11">1</Edge>
+      <Edge Target="13">1</Edge>
+      <Edge Target="19">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="13">
+    <Degree>5</Degree>
+    <Xpos>222</Xpos>
+    <Ypos>86</Ypos>
+    <Edges>
+      <Edge Target="8">1</Edge>
+      <Edge Target="11">1</Edge>
+      <Edge Target="12">1</Edge>
+      <Edge Target="14">1</Edge>
+      <Edge Target="16">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="14">
+    <Degree>2</Degree>
+    <Xpos>112</Xpos>
+    <Ypos>124</Ypos>
+    <Edges>
+      <Edge Target="13">1</Edge>
+      <Edge Target="16">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="15">
+    <Degree>4</Degree>
+    <Xpos>229</Xpos>
+    <Ypos>233</Ypos>
+    <Edges>
+      <Edge Target="11">1</Edge>
+      <Edge Target="16">1</Edge>
+      <Edge Target="18">1</Edge>
+      <Edge Target="33">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="16">
+    <Degree>5</Degree>
+    <Xpos>144</Xpos>
+    <Ypos>198</Ypos>
+    <Edges>
+      <Edge Target="11">1</Edge>
+      <Edge Target="13">1</Edge>
+      <Edge Target="14">1</Edge>
+      <Edge Target="15">1</Edge>
+      <Edge Target="17">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="17">
+    <Degree>3</Degree>
+    <Xpos>99</Xpos>
+    <Ypos>286</Ypos>
+    <Edges>
+      <Edge Target="16">1</Edge>
+      <Edge Target="18">1</Edge>
+      <Edge Target="47">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="18">
+    <Degree>4</Degree>
+    <Xpos>174</Xpos>
+    <Ypos>306</Ypos>
+    <Edges>
+      <Edge Target="15">1</Edge>
+      <Edge Target="17">1</Edge>
+      <Edge Target="34">1</Edge>
+      <Edge Target="46">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="19">
+    <Degree>5</Degree>
+    <Xpos>297</Xpos>
+    <Ypos>151</Ypos>
+    <Edges>
+      <Edge Target="12">1</Edge>
+      <Edge Target="20">1</Edge>
+      <Edge Target="21">1</Edge>
+      <Edge Target="22">1</Edge>
+      <Edge Target="23">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="20">
+    <Degree>4</Degree>
+    <Xpos>298</Xpos>
+    <Ypos>180</Ypos>
+    <Edges>
+      <Edge Target="11">1</Edge>
+      <Edge Target="19">1</Edge>
+      <Edge Target="22">1</Edge>
+      <Edge Target="25">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="21">
+    <Degree>6</Degree>
+    <Xpos>369</Xpos>
+    <Ypos>125</Ypos>
+    <Edges>
+      <Edge Target="7">1</Edge>
+      <Edge Target="19">1</Edge>
+      <Edge Target="22">1</Edge>
+      <Edge Target="26">1</Edge>
+      <Edge Target="27">1</Edge>
+      <Edge Target="28">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="22">
+    <Degree>7</Degree>
+    <Xpos>366</Xpos>
+    <Ypos>158</Ypos>
+    <Edges>
+      <Edge Target="19">1</Edge>
+      <Edge Target="20">1</Edge>
+      <Edge Target="21">1</Edge>
+      <Edge Target="25">1</Edge>
+      <Edge Target="26">1</Edge>
+      <Edge Target="30">1</Edge>
+      <Edge Target="41">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="23">
+    <Degree>3</Degree>
+    <Xpos>331</Xpos>
+    <Ypos>112</Ypos>
+    <Edges>
+      <Edge Target="7">1</Edge>
+      <Edge Target="9">1</Edge>
+      <Edge Target="19">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="24">
+    <Degree>5</Degree>
+    <Xpos>307</Xpos>
+    <Ypos>221</Ypos>
+    <Edges>
+      <Edge Target="11">1</Edge>
+      <Edge Target="25">1</Edge>
+      <Edge Target="30">1</Edge>
+      <Edge Target="33">1</Edge>
+      <Edge Target="35">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="25">
+    <Degree>4</Degree>
+    <Xpos>331</Xpos>
+    <Ypos>188</Ypos>
+    <Edges>
+      <Edge Target="20">1</Edge>
+      <Edge Target="22">1</Edge>
+      <Edge Target="24">1</Edge>
+      <Edge Target="30">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="26">
+    <Degree>5</Degree>
+    <Xpos>420</Xpos>
+    <Ypos>138</Ypos>
+    <Edges>
+      <Edge Target="21">1</Edge>
+      <Edge Target="22">1</Edge>
+      <Edge Target="28">1</Edge>
+      <Edge Target="29">1</Edge>
+      <Edge Target="41">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="27">
+    <Degree>6</Degree>
+    <Xpos>403</Xpos>
+    <Ypos>81</Ypos>
+    <Edges>
+      <Edge Target="2">1</Edge>
+      <Edge Target="3">1</Edge>
+      <Edge Target="5">1</Edge>
+      <Edge Target="7">1</Edge>
+      <Edge Target="21">1</Edge>
+      <Edge Target="28">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="28">
+    <Degree>4</Degree>
+    <Xpos>442</Xpos>
+    <Ypos>111</Ypos>
+    <Edges>
+      <Edge Target="21">1</Edge>
+      <Edge Target="26">1</Edge>
+      <Edge Target="27">1</Edge>
+      <Edge Target="29">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="29">
+    <Degree>3</Degree>
+    <Xpos>471</Xpos>
+    <Ypos>136</Ypos>
+    <Edges>
+      <Edge Target="26">1</Edge>
+      <Edge Target="28">1</Edge>
+      <Edge Target="41">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="30">
+    <Degree>6</Degree>
+    <Xpos>361</Xpos>
+    <Ypos>210</Ypos>
+    <Edges>
+      <Edge Target="22">1</Edge>
+      <Edge Target="24">1</Edge>
+      <Edge Target="25">1</Edge>
+      <Edge Target="31">1</Edge>
+      <Edge Target="32">1</Edge>
+      <Edge Target="35">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="31">
+    <Degree>3</Degree>
+    <Xpos>396</Xpos>
+    <Ypos>208</Ypos>
+    <Edges>
+      <Edge Target="30">1</Edge>
+      <Edge Target="32">1</Edge>
+      <Edge Target="41">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="32">
+    <Degree>5</Degree>
+    <Xpos>424</Xpos>
+    <Ypos>238</Ypos>
+    <Edges>
+      <Edge Target="30">1</Edge>
+      <Edge Target="31">1</Edge>
+      <Edge Target="35">1</Edge>
+      <Edge Target="36">1</Edge>
+      <Edge Target="41">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="33">
+    <Degree>5</Degree>
+    <Xpos>293</Xpos>
+    <Ypos>279</Ypos>
+    <Edges>
+      <Edge Target="15">1</Edge>
+      <Edge Target="24">1</Edge>
+      <Edge Target="34">1</Edge>
+      <Edge Target="35">1</Edge>
+      <Edge Target="39">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="34">
+    <Degree>2</Degree>
+    <Xpos>234</Xpos>
+    <Ypos>294</Ypos>
+    <Edges>
+      <Edge Target="18">1</Edge>
+      <Edge Target="33">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="35">
+    <Degree>6</Degree>
+    <Xpos>366</Xpos>
+    <Ypos>277</Ypos>
+    <Edges>
+      <Edge Target="24">1</Edge>
+      <Edge Target="30">1</Edge>
+      <Edge Target="32">1</Edge>
+      <Edge Target="33">1</Edge>
+      <Edge Target="36">1</Edge>
+      <Edge Target="38">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="36">
+    <Degree>4</Degree>
+    <Xpos>423</Xpos>
+    <Ypos>276</Ypos>
+    <Edges>
+      <Edge Target="32">1</Edge>
+      <Edge Target="35">1</Edge>
+      <Edge Target="37">1</Edge>
+      <Edge Target="40">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="37">
+    <Degree>6</Degree>
+    <Xpos>423</Xpos>
+    <Ypos>325</Ypos>
+    <Edges>
+      <Edge Target="36">1</Edge>
+      <Edge Target="38">1</Edge>
+      <Edge Target="40">1</Edge>
+      <Edge Target="44">1</Edge>
+      <Edge Target="45">1</Edge>
+      <Edge Target="51">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="38">
+    <Degree>5</Degree>
+    <Xpos>322</Xpos>
+    <Ypos>346</Ypos>
+    <Edges>
+      <Edge Target="35">1</Edge>
+      <Edge Target="37">1</Edge>
+      <Edge Target="39">1</Edge>
+      <Edge Target="50">1</Edge>
+      <Edge Target="51">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="39">
+    <Degree>5</Degree>
+    <Xpos>260</Xpos>
+    <Ypos>352</Ypos>
+    <Edges>
+      <Edge Target="33">1</Edge>
+      <Edge Target="38">1</Edge>
+      <Edge Target="46">1</Edge>
+      <Edge Target="49">1</Edge>
+      <Edge Target="50">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="40">
+    <Degree>5</Degree>
+    <Xpos>459</Xpos>
+    <Ypos>267</Ypos>
+    <Edges>
+      <Edge Target="36">1</Edge>
+      <Edge Target="37">1</Edge>
+      <Edge Target="41">1</Edge>
+      <Edge Target="42">1</Edge>
+      <Edge Target="43">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="41">
+    <Degree>7</Degree>
+    <Xpos>448</Xpos>
+    <Ypos>190</Ypos>
+    <Edges>
+      <Edge Target="22">1</Edge>
+      <Edge Target="26">1</Edge>
+      <Edge Target="29">1</Edge>
+      <Edge Target="31">1</Edge>
+      <Edge Target="32">1</Edge>
+      <Edge Target="40">1</Edge>
+      <Edge Target="42">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="42">
+    <Degree>3</Degree>
+    <Xpos>503</Xpos>
+    <Ypos>272</Ypos>
+    <Edges>
+      <Edge Target="40">1</Edge>
+      <Edge Target="41">1</Edge>
+      <Edge Target="43">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="43">
+    <Degree>3</Degree>
+    <Xpos>485</Xpos>
+    <Ypos>311</Ypos>
+    <Edges>
+      <Edge Target="40">1</Edge>
+      <Edge Target="42">1</Edge>
+      <Edge Target="44">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="44">
+    <Degree>3</Degree>
+    <Xpos>476</Xpos>
+    <Ypos>349</Ypos>
+    <Edges>
+      <Edge Target="37">1</Edge>
+      <Edge Target="43">1</Edge>
+      <Edge Target="45">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="45">
+    <Degree>3</Degree>
+    <Xpos>445</Xpos>
+    <Ypos>391</Ypos>
+    <Edges>
+      <Edge Target="37">1</Edge>
+      <Edge Target="44">1</Edge>
+      <Edge Target="51">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="46">
+    <Degree>5</Degree>
+    <Xpos>180</Xpos>
+    <Ypos>399</Ypos>
+    <Edges>
+      <Edge Target="18">1</Edge>
+      <Edge Target="39">1</Edge>
+      <Edge Target="47">1</Edge>
+      <Edge Target="48">1</Edge>
+      <Edge Target="49">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="47">
+    <Degree>3</Degree>
+    <Xpos>111</Xpos>
+    <Ypos>422</Ypos>
+    <Edges>
+      <Edge Target="17">1</Edge>
+      <Edge Target="46">1</Edge>
+      <Edge Target="48">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="48">
+    <Degree>3</Degree>
+    <Xpos>153</Xpos>
+    <Ypos>467</Ypos>
+    <Edges>
+      <Edge Target="46">1</Edge>
+      <Edge Target="47">1</Edge>
+      <Edge Target="49">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="49">
+    <Degree>4</Degree>
+    <Xpos>225</Xpos>
+    <Ypos>457</Ypos>
+    <Edges>
+      <Edge Target="39">1</Edge>
+      <Edge Target="46">1</Edge>
+      <Edge Target="48">1</Edge>
+      <Edge Target="50">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="50">
+    <Degree>4</Degree>
+    <Xpos>286</Xpos>
+    <Ypos>426</Ypos>
+    <Edges>
+      <Edge Target="38">1</Edge>
+      <Edge Target="39">1</Edge>
+      <Edge Target="49">1</Edge>
+      <Edge Target="51">1</Edge>
+    </Edges>
+  </Node>
+  <Node num="51">
+    <Degree>4</Degree>
+    <Xpos>371</Xpos>
+    <Ypos>449</Ypos>
+    <Edges>
+      <Edge Target="37">1</Edge>
+      <Edge Target="38">1</Edge>
+      <Edge Target="45">1</Edge>
+      <Edge Target="50">1</Edge>
+    </Edges>
+  </Node>
+</Network>

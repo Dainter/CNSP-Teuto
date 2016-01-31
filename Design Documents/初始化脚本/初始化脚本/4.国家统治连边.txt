@@ -1,0 +1,79 @@
+              void Add(int iStart, int iEnd)
+        {
+            AddEdge(iStart, iEnd);
+        }
+
+        void AddEdge(int iStart, int iEnd)
+        {
+            IfCoreNode nodeStart, nodeEnd;
+            RuleEdge newEdge = new RuleEdge();
+            nodeStart = zhanguo.GetNodeAtIndex(iStart);
+            nodeEnd = zhanguo.GetNodeAtIndex(iEnd);
+            zhanguo.AddEdge(nodeStart, nodeEnd, newEdge);
+
+        }  
+
+void Network_Init()
+        {
+            Add(52, 0);
+            Add(52, 1);
+            Add(52, 2);
+            Add(52, 3);
+            Add(52, 4);
+            Add(52, 5);
+
+            Add(53, 6);
+            Add(53, 7);
+            Add(53, 8);
+            Add(53, 9);
+            Add(53, 10);
+
+            Add(54, 11);
+            Add(54, 12);
+            Add(54, 13);
+            Add(54, 14);
+            Add(54, 15);
+            Add(54, 16);
+            Add(54, 17);
+            Add(54, 18);
+
+            Add(55, 19);
+            Add(55, 20);
+            Add(55, 21);
+            Add(55, 22);
+
+            Add(56, 23);
+            Add(56, 24);
+            Add(56, 25);
+
+            Add(57, 26);
+            Add(57, 27);
+            Add(57, 28);
+            Add(57, 29);
+
+            Add(58, 30);
+            Add(58, 31);
+            Add(58, 32);
+            Add(58, 33);
+            Add(58, 34);
+            Add(58, 35);
+            Add(58, 36);
+            Add(58, 37);
+            Add(58, 38);
+            Add(58, 39);
+
+            Add(59, 40);
+            Add(59, 41);
+            Add(59, 42);
+
+            Add(60, 43);
+            Add(60, 44);
+
+            Add(61, 45);
+            Add(61, 46);
+            Add(61, 47);
+            Add(61, 48);
+            Add(61, 49);
+            Add(61, 50);
+            Add(61, 51);
+        }

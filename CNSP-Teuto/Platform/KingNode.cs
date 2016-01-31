@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
 using CNSP.Core.Node;
 using CNSP.Core.Edge;
 using CNSP.Core.User;
 
 namespace CNSP.Platform
 {
-    public class TroopNode : Node//军队节点类
+    public class KingNode:Node
     {
-        //军队番号
         string strName;
-        //建立年份
-        int intCreate;
-
+        int intAge;
+        
         //属性/////////////////////
         public string Name
         {
@@ -24,20 +21,24 @@ namespace CNSP.Platform
                 return strName;
             }
         }
-        public int CreateYear
+        public int Age
         {
             get
             {
-                return intCreate;
+                return intAge;
             }
         }
         //方法////////////////////
-        public TroopNode(string sName, int iCreate):base(new NodeType(NodeTypeEnum.Troop))
+        public KingNode(string sName, string sType, int iAge)
+            : base(new NodeType(sType))
         {
             strName = sName;
-            intCreate = iCreate;
+            intAge = iAge;
         }
 
+        public void MakePolicy()
+        {
 
+        }
     }
 }

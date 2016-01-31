@@ -1,0 +1,116 @@
+ void Network_Init(ref Graph zhanguo)
+        {
+            DistrictNode liaodong = new DistrictNode("辽东", 200000);
+            DistrictNode liaoxi = new DistrictNode("辽西", 200000);
+            DistrictNode youbeiping = new DistrictNode("右北平", 100000);
+            DistrictNode yuyang = new DistrictNode("渔阳", 150000);
+            DistrictNode shangu = new DistrictNode("上谷", 350000);
+            DistrictNode ji = new DistrictNode("蓟", 500000);
+            zhanguo.AddNode(liaodong);
+            zhanguo.AddNode(liaoxi);
+            zhanguo.AddNode(youbeiping);
+            zhanguo.AddNode(yuyang);
+            zhanguo.AddNode(shangu);
+            zhanguo.AddNode(ji);
+
+            DistrictNode dai = new DistrictNode("代", 500000);
+            DistrictNode handan = new DistrictNode("邯郸", 800000);
+            DistrictNode yunzhong = new DistrictNode("云中", 200000);
+            DistrictNode taiyuan = new DistrictNode("太原", 800000);
+            DistrictNode jiuyuan = new DistrictNode("九原", 200000);
+            zhanguo.AddNode(dai);
+            zhanguo.AddNode(handan);
+            zhanguo.AddNode(yunzhong);
+            zhanguo.AddNode(taiyuan);
+            zhanguo.AddNode(jiuyuan);
+
+            DistrictNode guanzhong = new DistrictNode("关中", 1100000);
+            DistrictNode shangjun = new DistrictNode("上郡", 500000);
+            DistrictNode beidi = new DistrictNode("北地", 400000);
+            DistrictNode tianshui = new DistrictNode("天水", 300000);
+            DistrictNode hanzhong = new DistrictNode("汉中", 650000);
+            DistrictNode longxi = new DistrictNode("陇西", 350000);
+            DistrictNode shujun = new DistrictNode("蜀郡", 700000);
+            DistrictNode bajun = new DistrictNode("巴郡", 300000);
+            zhanguo.AddNode(guanzhong);
+            zhanguo.AddNode(shangjun);
+            zhanguo.AddNode(beidi);
+            zhanguo.AddNode(tianshui);
+            zhanguo.AddNode(hanzhong);
+            zhanguo.AddNode(longxi);
+            zhanguo.AddNode(shujun);
+            zhanguo.AddNode(bajun);
+
+            DistrictNode hedong = new DistrictNode("河东", 1000000);
+            DistrictNode henei = new DistrictNode("河内", 700000);
+            DistrictNode dongjun = new DistrictNode("东郡", 800000);
+            DistrictNode dingtao = new DistrictNode("定陶", 1000000);
+            zhanguo.AddNode(hedong);
+            zhanguo.AddNode(henei);
+            zhanguo.AddNode(dongjun);
+            zhanguo.AddNode(dingtao);
+
+
+            DistrictNode shangdang = new DistrictNode("上党", 200000);
+            DistrictNode nanyang = new DistrictNode("南阳", 400000);
+            DistrictNode sanchuan = new DistrictNode("三川", 400000);
+            zhanguo.AddNode(shangdang);
+            zhanguo.AddNode(nanyang);
+            zhanguo.AddNode(sanchuan);
+
+            DistrictNode lujun = new DistrictNode("鲁郡", 1100000);
+            DistrictNode julu = new DistrictNode("巨鹿", 800000);
+            DistrictNode qijun = new DistrictNode("齐郡", 1100000);
+            DistrictNode langya = new DistrictNode("琅琊", 1000000);
+            zhanguo.AddNode(lujun);
+            zhanguo.AddNode(julu);
+            zhanguo.AddNode(qijun);
+            zhanguo.AddNode(langya);
+
+            DistrictNode yinchuan = new DistrictNode("颍川", 800000);
+            DistrictNode yangjun = new DistrictNode("砀郡", 700000);
+            DistrictNode sishui = new DistrictNode("泗水", 700000);
+            DistrictNode nanjun = new DistrictNode("南郡", 600000);
+            DistrictNode wujun = new DistrictNode("巫郡", 200000);
+            DistrictNode shangcai = new DistrictNode("上蔡", 500000);
+            DistrictNode shouchun = new DistrictNode("寿春", 500000);
+            DistrictNode jiujiang = new DistrictNode("九江", 400000);
+            DistrictNode changsha = new DistrictNode("长沙", 400000);
+            DistrictNode qianzhong = new DistrictNode("黔中", 200000);
+            zhanguo.AddNode(yinchuan);
+            zhanguo.AddNode(yangjun);
+            zhanguo.AddNode(sishui);
+            zhanguo.AddNode(nanjun);
+            zhanguo.AddNode(wujun);
+            zhanguo.AddNode(shangcai);
+            zhanguo.AddNode(shouchun);
+            zhanguo.AddNode(jiujiang);
+            zhanguo.AddNode(changsha);
+            zhanguo.AddNode(qianzhong);
+
+            DistrictNode yuzhang = new DistrictNode("豫章", 100000);
+            DistrictNode xuejun = new DistrictNode("薛郡", 350000);
+            DistrictNode wujun = new DistrictNode("吴郡", 350000);
+            DistrictNode kuaiji = new DistrictNode("会稽", 350000);
+            DistrictNode dongou = new DistrictNode("东瓯", 150000);
+            zhanguo.AddNode(yuzhang);
+            zhanguo.AddNode(xuejun);
+            zhanguo.AddNode(wujun);
+            zhanguo.AddNode(kuaiji);
+            zhanguo.AddNode(dongou);
+
+            DistrictNode mingyue = new DistrictNode("闽越", 100000);
+            DistrictNode qianjun = new DistrictNode("黔郡", 100000);
+            DistrictNode yelang = new DistrictNode("夜郎", 60000);
+            DistrictNode xiangjun = new DistrictNode("象郡", 60000);
+            DistrictNode guiling = new DistrictNode("桂林", 60000);
+            DistrictNode linlin = new DistrictNode("零陵", 60000);
+            DistrictNode cangwu = new DistrictNode("苍梧", 60000);
+            zhanguo.AddNode(mingyue);
+            zhanguo.AddNode(qianjun);
+            zhanguo.AddNode(yelang);
+            zhanguo.AddNode(xiangjun);
+            zhanguo.AddNode(guiling);
+            zhanguo.AddNode(linlin);
+            zhanguo.AddNode(cangwu);
+        }

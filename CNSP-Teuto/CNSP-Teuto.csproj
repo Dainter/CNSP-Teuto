@@ -36,6 +36,10 @@
   <PropertyGroup>
     <StartupObject>CNSP.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Network.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,28 +54,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Edge\Edge.cs" />
-    <Compile Include="Core\Edge\EdgeType.cs" />
+    <Compile Include="Core\User\EdgeType.cs" />
     <Compile Include="Core\Edge\IfCoreEdge.cs" />
     <Compile Include="Core\Graph\Graph.cs" />
     <Compile Include="Core\Node\IfCoreNode.cs" />
     <Compile Include="Core\Node\Node.cs" />
-    <Compile Include="Core\Node\NodeType.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Core\User\NodeType.cs" />
+    <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Platform\CharNode.cs" />
+    <Compile Include="Platform\GeneralNode.cs" />
+    <Compile Include="Platform\ConnectEdge.cs" />
     <Compile Include="Platform\DistrictNode.cs" />
+    <Compile Include="Core\User\EdgeCreateFactory.cs" />
+    <Compile Include="Platform\Empire.cs" />
+    <Compile Include="Platform\IO\IfIOStrategy.cs" />
+    <Compile Include="Platform\IO\XMLStrategy.cs" />
+    <Compile Include="Platform\KingNode.cs" />
     <Compile Include="Platform\LeadEdge.cs" />
     <Compile Include="Platform\NationNode.cs" />
+    <Compile Include="Core\User\NodeCreateFactory.cs" />
     <Compile Include="Platform\RuleEdge.cs" />
     <Compile Include="Platform\TroopNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,7 +104,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\War_Ensign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Deutschland.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Network.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

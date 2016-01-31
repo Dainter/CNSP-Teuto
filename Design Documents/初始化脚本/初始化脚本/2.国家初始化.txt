@@ -1,0 +1,25 @@
+        void Network_Init(ref Graph zhanguo)
+        {
+            NationNode yan = new NationNode("燕国");
+            NationNode zhao = new NationNode("赵国");
+            NationNode qin = new NationNode("秦国");
+            NationNode wei = new NationNode("魏国");
+            NationNode han = new NationNode("韩国");
+            NationNode qi = new NationNode("齐国");
+            NationNode chu = new NationNode("楚国");
+            NationNode wu = new NationNode("吴国");
+            NationNode yue = new NationNode("越国");
+            NationNode baiyue = new NationNode("百越");
+            zhanguo.AddNode(yan);
+            zhanguo.AddNode(zhao);
+            zhanguo.AddNode(qin);
+            zhanguo.AddNode(wei);
+            zhanguo.AddNode(han);
+            zhanguo.AddNode(qi);
+            zhanguo.AddNode(chu);
+            zhanguo.AddNode(wu);
+            zhanguo.AddNode(yue);
+            zhanguo.AddNode(baiyue);
+
+ 
+        }
