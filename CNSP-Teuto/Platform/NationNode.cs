@@ -17,10 +17,14 @@ namespace CNSP.Platform
         Color colFore;
         Color colBack;
         Color colFrame;
+        int intTotalArmy;
+        double dubTotalMoney;
+        double dubBreed;//出生率
         double dubArgiRate; //农业生产率
         double dubCommRate;//商业生产率
         double dubTaxRate;//税率
         double dubDraftRate;  //征兵率
+        List<DistrictNode> DistrictsList;
         //属性///////////////////////////////
         public string Name
         {
@@ -50,6 +54,27 @@ namespace CNSP.Platform
                 return colFrame;
             }
         }
+        public int Army
+        {
+            get
+            {
+                return intTotalArmy;
+            }
+        }
+        public double Money
+        {
+            get
+            {
+                return dubTotalMoney;
+            }
+        }
+        public List<DistrictNode> Districts
+        {
+            get
+            {
+                return DistrictsList;
+            }
+        }
         //方法///////////////////////////////
         //构造函数
         public NationNode(string sName)
@@ -60,12 +85,10 @@ namespace CNSP.Platform
                 sName = "叛军";
             }
             strName = sName;
-            dubArgiRate = dubCommRate = dubTaxRate = dubDraftRate = 1.0;
             colFore = Color.Blue;
             colBack = Color.Green;
             colFrame = Color.Navy;
         }
-        
         //构造函数-xml
         public NationNode(XmlElement xNode)
             : base(new NodeType(NodeTypeEnum.Nation), xNode)
@@ -74,7 +97,6 @@ namespace CNSP.Platform
             this.colFore = Color.FromArgb(Convert.ToInt32(GetText(xNode, "colFore"), 16));
             this.colBack = Color.FromArgb(Convert.ToInt32(GetText(xNode, "colBack"), 16));
             this.colFrame = Color.FromArgb(Convert.ToInt32(GetText(xNode, "colFrame"), 16));
-            dubArgiRate = dubCommRate = dubTaxRate = dubDraftRate = 1.0;
         }
 
          //将节点数据保存为xml格式
@@ -111,8 +133,38 @@ namespace CNSP.Platform
 
         public void Initialize()
         {
-            
-
+            intTotalArmy = 0;
+            dubTotalMoney = 20000.0;
+            dubBreed = 0.01;
+            dubArgiRate = 0.001;
+            dubCommRate = 0.003;
+            dubTaxRate = 0.06;
+            dubDraftRate = 0.005;
+            DistrictsList = new List<DistrictNode>();
+            foreach (IfCoreEdge edge in OutBound)
+            {
+                if (edge.Type.Type == EdgeTypeEnum.Rule)
+                {
+                    DistrictsList.Add((DistrictNode)(edge.End));
+                    ((DistrictNode)edge.End).Initialize(dubArgiRate, dubCommRate);
+                }
+            }
+        }
+        //每年操作
+        public void Round(int iRound)
+        {
+            double dTax;
+            int iDraft;
+            //
+            iDraft = 0;
+            dTax = 0.0;
+            foreach (DistrictNode node in DistrictsList)
+            {
+                iDraft += node.PopulationBreed(dubBreed, dubDraftRate);
+                dTax += node.Economy(dubArgiRate, dubCommRate, dubTaxRate);
+            }
+            intTotalArmy += iDraft;
+            dubTotalMoney += dTax;
         }
 
     }

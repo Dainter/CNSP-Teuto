@@ -54,14 +54,65 @@ namespace CNSP
             china = new Empire();
             //XmlDocument doc = china.EmpireData.ToXML();
             //doc.Save("1.xml");
+            china.Round();
             return;
         }
 
         private void StartTimer_Tick(object sender, EventArgs e)
         {
             GraphicReset();
+            NationList_Load();
             StartTimer.Enabled = false;
         }
+
+        private void NationList_Load()
+        {
+            NationList.Items.Clear();
+            foreach (NationNode node in china.Nations)
+            {
+                NationList.Items.Add(node.Name);
+            }
+        }
+
+        private void NationList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (NationList.SelectedIndex > -1)
+            {
+                //更新国家信息
+                ArmyBox.Text = china.Nations[NationList.SelectedIndex].Army.ToString();
+                MoneyBox.Text = china.Nations[NationList.SelectedIndex].Money.ToString();
+                //更新辖地信息
+                DistrictList_Load(china.Nations[NationList.SelectedIndex]);
+            }
+        }
+
+        private void DistrictList_Load(NationNode nation)
+        {
+            DistrictList.Items.Clear();
+            foreach (DistrictNode node in nation.Districts)
+            {
+                DistrictList.Items.Add(node.Name);
+            }
+        }
+
+        private void DistrictList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DistrictList.SelectedIndex > -1)
+            {
+                NationNode nation = china.Nations[NationList.SelectedIndex];
+                DistrictInfo_Load(nation.Districts[DistrictList.SelectedIndex]);
+            }
+        }
+
+        private void DistrictInfo_Load(DistrictNode dist)
+        {
+            DistPopu.Text = dist.Population.ToString();
+            DistArgi.Text = dist.Harvest.ToString();
+            DistComm.Text = dist.Commerce.ToString();
+            DistTrade.Text = dist.Trade.ToString();
+ 
+        }
+
         /*
         void Network_Init()
         {

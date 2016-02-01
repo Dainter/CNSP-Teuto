@@ -13,9 +13,10 @@ namespace CNSP.Platform
     public class DistrictNode : Node
     {
         string strName;
-        int intHarvest;
-        int intCommerce;
         int intPolulation;
+        double dubHarvest;
+        double dubCommerce;
+        double dubTrade;
         //属性///////////////////////////////
         public string Name
         {
@@ -31,18 +32,25 @@ namespace CNSP.Platform
                 return this.BelongTo();
             }
         }
-        public int Harvest
+        public double Harvest
         {
             get
             {
-                return intHarvest;
+                return dubHarvest;
             }
         }
-        public int Commerce
+        public double Commerce
         {
             get
             {
-                return intCommerce;
+                return dubCommerce;
+            }
+        }
+        public double Trade
+        {
+            get
+            {
+                return dubTrade;
             }
         }
         public int Population
@@ -61,8 +69,8 @@ namespace CNSP.Platform
                 sName = "叛军城镇";
             }
             strName = sName;
-            intHarvest = iPopu;
-            intCommerce = iPopu;
+            dubHarvest = iPopu;
+            dubCommerce = iPopu;
             intPolulation = iPopu;
         }
         //构造函数- xml
@@ -71,10 +79,9 @@ namespace CNSP.Platform
         {
             this.strName = GetText(xNode, "Name");
             this.intPolulation = Convert.ToInt32(GetText(xNode, "Population"));
-            this.intHarvest = this.intPolulation;
-            this.intCommerce = this.intPolulation;
+            this.dubHarvest = this.intPolulation;
+            this.dubCommerce = this.intPolulation;
         }
-
         //将节点数据保存为xml格式
         public override XmlElement XMLoutput(ref XmlDocument doc)
         {
@@ -99,7 +106,21 @@ namespace CNSP.Platform
 
             return curNode;
         }
-
+        //节点初始化
+        public void Initialize(double dubArgiRate, double dubCommRate)
+        {
+            int iPiece = NeighborInPeace().Count;
+            dubHarvest = intPolulation * dubArgiRate;
+            dubCommerce = intPolulation * dubCommRate;
+            if (iPiece == 0)
+            {
+                dubTrade = 0;
+                return;
+            }
+            dubTrade = dubCommerce / (iPiece * 1.0);
+            return;
+        }
+        //返回节点所属国家
         NationNode BelongTo()
         {
             foreach (IfCoreEdge curEdge in this.InBound)
@@ -111,6 +132,52 @@ namespace CNSP.Platform
             }
             return null;
         }
+        //返回处于中立关系的地区列表
+        List<DistrictNode> NeighborInPeace()
+        {
+            List<DistrictNode> ResultList = new List<DistrictNode>();
+            foreach (IfCoreEdge edge in this.OutBound)
+            {
+                if (edge.Type.Type == EdgeTypeEnum.Connect)
+                {
+                    ResultList.Add((DistrictNode)(edge.End));
+                }
+            }
+            return ResultList;
+        }
+        //人口增殖 返回征兵数
+        public int PopulationBreed(double dubBreed, double dubDraft)
+        {
+            int intDraft;
+
+            intDraft = Convert.ToInt32(intPolulation * dubDraft);
+            intPolulation = Convert.ToInt32(intPolulation * (1.0 + dubBreed)) - intDraft;
+            return intDraft;
+        }
+        //商业交换 返回税收数
+        public double Economy(double dubArgiRate, double dubCommRate, double dubTaxRate)
+        {
+            double dubTax;
+            int iPiece = NeighborInPeace().Count;
+            dubHarvest = intPolulation * dubArgiRate;
+            dubCommerce = intPolulation * dubCommRate;
+            foreach (DistrictNode node in NeighborInPeace())
+            {
+                dubCommerce += node.Trade;
+            }
+            dubTax = dubCommerce * dubTaxRate;
+            dubCommerce -= dubTax;
+            if (iPiece == 0)
+            {
+                dubTrade = 0;
+            }
+            else
+            {
+                dubTrade = dubCommerce / (iPiece * 1.0);
+            }
+            return dubTax;
+        }
+        //
 
     }
 }

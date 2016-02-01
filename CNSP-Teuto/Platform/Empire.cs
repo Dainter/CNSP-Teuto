@@ -15,6 +15,7 @@ namespace CNSP.Platform
 {
     public class Empire
     {
+        int intRound;
         public Graph EmpireData;
         List<KingNode> KingsList;
         List<NationNode> NationsList;
@@ -41,9 +42,10 @@ namespace CNSP.Platform
             EmpireData = new Graph();
             IfIOStrategy reader = new XMLStrategy();
             EmpireData = reader.ReadFile("0.xml");
+            intRound = 1;
             Initialize();
         }
-
+        //初始化，生成节点
         public void Initialize()
         {
             KingsList = new List<KingNode>();
@@ -77,7 +79,7 @@ namespace CNSP.Platform
                 nNode.Initialize();
             }
         }
-
+        //绘制地图
         public void DrawMap(ref Graphics graMap)
         {
             Point locStart, locEnd;
@@ -104,7 +106,7 @@ namespace CNSP.Platform
                                                curNode.Location.Y - nodeImage.Height / 2));
             }
         }
-
+        //绘制节点
         Image DrawNode(DistrictNode dNode, NationNode nNode)
         {
             Pen frame;					//显示变量 边框画笔
@@ -129,7 +131,13 @@ namespace CNSP.Platform
             gGraphic.DrawString(dNode.Name, new Font("Times New Roman", 7), fore,  1,  7);
             return img;
         }
-        
-
+        //每年操作
+        public void Round()
+        {
+            foreach(NationNode node in this.NationsList)
+            {
+                node.Round(intRound);
+            }
+        }
     }
 }
