@@ -17,12 +17,15 @@ namespace CNSP.Platform
         Color colFore;
         Color colBack;
         Color colFrame;
+        int intTotalPopulation;
         int intTotalArmy;
         double dubTotalMoney;
         double dubBreed;//出生率
         double dubArgiRate; //农业生产率
         double dubCommRate;//商业生产率
         double dubTaxRate;//税率
+        double dubPayRate;//维护费
+        double dubEquiptRate;//装备费
         double dubDraftRate;  //征兵率
         List<DistrictNode> DistrictsList;
         //属性///////////////////////////////
@@ -52,6 +55,13 @@ namespace CNSP.Platform
             get
             {
                 return colFrame;
+            }
+        }
+        public int Population
+        {
+            get
+            {
+                return intTotalPopulation;
             }
         }
         public int Army
@@ -133,13 +143,16 @@ namespace CNSP.Platform
 
         public void Initialize()
         {
+            intTotalPopulation = 0;
             intTotalArmy = 0;
             dubTotalMoney = 20000.0;
             dubBreed = 0.01;
-            dubArgiRate = 0.001;
-            dubCommRate = 0.003;
-            dubTaxRate = 0.06;
+            dubArgiRate = 0.002;
+            dubCommRate = 0.006;
+            dubTaxRate = 0.1;
             dubDraftRate = 0.005;
+            dubPayRate = 0.02;
+            dubEquiptRate = 0.1;
             DistrictsList = new List<DistrictNode>();
             foreach (IfCoreEdge edge in OutBound)
             {
@@ -147,24 +160,239 @@ namespace CNSP.Platform
                 {
                     DistrictsList.Add((DistrictNode)(edge.End));
                     ((DistrictNode)edge.End).Initialize(dubArgiRate, dubCommRate);
+                    intTotalPopulation += ((DistrictNode)edge.End).Population;
                 }
             }
         }
-        //每年操作
-        public void Round(int iRound)
+        //每年回合开始前操作
+        public void PreRound(int iRound)
         {
             double dTax;
-            int iDraft;
+            int iPopu;
             //
-            iDraft = 0;
+            iPopu = 0;
             dTax = 0.0;
             foreach (DistrictNode node in DistrictsList)
             {
-                iDraft += node.PopulationBreed(dubBreed, dubDraftRate);
+                iPopu += node.PopulationBreed(dubBreed);
                 dTax += node.Economy(dubArgiRate, dubCommRate, dubTaxRate);
             }
-            intTotalArmy += iDraft;
+            intTotalPopulation = iPopu;
             dubTotalMoney += dTax;
+            PayMaintenance();
+        }
+        //支付薪饷
+        void PayMaintenance()
+        {
+            dubTotalMoney -= intTotalArmy * dubPayRate; 
+        }
+        //征召部队
+        void Draft()
+        {
+            double dubActuralDraftRate;
+            int intNewDraft = 0;
+            //征兵率制定
+            dubActuralDraftRate = DraftPolicy();
+            //征召部队
+            foreach (IfCoreEdge edge in OutBound)
+            {
+                if (edge.Type.Type == EdgeTypeEnum.Rule)
+                {
+                    intNewDraft += ((DistrictNode)edge.End).Draft(dubActuralDraftRate);
+                }
+            }
+            intTotalArmy += intNewDraft;
+            intTotalPopulation -= intNewDraft;
+        }
+        //制订征兵率，1.国库盈余 2.征兵上限修正
+        double DraftPolicy()
+        {
+            return 0.005;
+        }
+        //比较两个国家编号
+        public static int CompareNationsByNumber(NationNode x, NationNode y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    // If x is null and y is null, they're
+                    // equal. 
+                    return 0;
+                }
+                else
+                {
+                    // If x is null and y is not null, y
+                    // is greater. 
+                    return -1;
+                }
+            }
+            else
+            {
+                // If x is not null...
+                //
+                if (y == null)
+                // ...and y is null, x is greater.
+                {
+                    return 1;
+                }
+                else
+                {
+                    // ...and y is not null, compare the 
+                    // lengths of the two strings.
+                    //
+                    int retval = x.Number.CompareTo(y.Number);
+                    return retval;
+                }
+            }
+        }
+        //比较两个国家人口
+        public static int CompareNationsByPopulation(NationNode x, NationNode y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    // If x is null and y is null, they're
+                    // equal. 
+                    return 0;
+                }
+                else
+                {
+                    // If x is null and y is not null, y
+                    // is greater. 
+                    return 1;
+                }
+            }
+            else
+            {
+                // If x is not null...
+                //
+                if (y == null)
+                // ...and y is null, x is greater.
+                {
+                    return -1;
+                }
+                else
+                {
+                    // ...and y is not null, compare the 
+                    // lengths of the two strings.
+                    //
+                    int retval = x.Population.CompareTo(y.Population);
+                    return -retval;
+                }
+            }
+        }
+        //比较两个国家国库
+        public static int CompareNationsByMoney(NationNode x, NationNode y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    // If x is null and y is null, they're
+                    // equal. 
+                    return 0;
+                }
+                else
+                {
+                    // If x is null and y is not null, y
+                    // is greater. 
+                    return 1;
+                }
+            }
+            else
+            {
+                // If x is not null...
+                //
+                if (y == null)
+                // ...and y is null, x is greater.
+                {
+                    return -1;
+                }
+                else
+                {
+                    // ...and y is not null, compare the 
+                    // lengths of the two strings.
+                    //
+                    int retval = x.Money.CompareTo(y.Money);
+                    return -retval;
+                }
+            }
+        }
+        //比较两个国家军队
+        public static int CompareNationsByArmy(NationNode x, NationNode y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    // If x is null and y is null, they're
+                    // equal. 
+                    return 0;
+                }
+                else
+                {
+                    // If x is null and y is not null, y
+                    // is greater. 
+                    return 1;
+                }
+            }
+            else
+            {
+                // If x is not null...
+                //
+                if (y == null)
+                // ...and y is null, x is greater.
+                {
+                    return -1;
+                }
+                else
+                {
+                    // ...and y is not null, compare the 
+                    // lengths of the two strings.
+                    //
+                    int retval = x.Army.CompareTo(y.Army);
+                    return -retval;
+                }
+            }
+        }
+        //比较两个国家土地
+        public static int CompareNationsByDistrict(NationNode x, NationNode y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    // If x is null and y is null, they're
+                    // equal. 
+                    return 0;
+                }
+                else
+                {
+                    // If x is null and y is not null, y
+                    // is greater. 
+                    return 1;
+                }
+            }
+            else
+            {
+                // If x is not null...
+                //
+                if (y == null)
+                // ...and y is null, x is greater.
+                {
+                    return -1;
+                }
+                else
+                {
+                    // ...and y is not null, compare the 
+                    // lengths of the two strings.
+                    //
+                    int retval = x.Districts.Count.CompareTo(y.Districts.Count);
+                    return -retval;
+                }
+            }
         }
 
     }

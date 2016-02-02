@@ -136,8 +136,18 @@ namespace CNSP.Platform
         {
             foreach(NationNode node in this.NationsList)
             {
-                node.Round(intRound);
+                node.PreRound(intRound);
             }
+            Statistic();
+        }
+
+        private void Statistic()
+        {
+            NationsList.Sort(NationNode.CompareNationsByPopulation);
+            NationsList.Sort(NationNode.CompareNationsByDistrict);
+            NationsList.Sort(NationNode.CompareNationsByMoney);
+            NationsList.Sort(NationNode.CompareNationsByArmy);
+            NationsList.Sort(NationNode.CompareNationsByNumber);
         }
     }
 }

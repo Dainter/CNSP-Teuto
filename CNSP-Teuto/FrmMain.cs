@@ -79,8 +79,9 @@ namespace CNSP
             if (NationList.SelectedIndex > -1)
             {
                 //更新国家信息
-                ArmyBox.Text = china.Nations[NationList.SelectedIndex].Army.ToString();
+                PopulationBox.Text = china.Nations[NationList.SelectedIndex].Population.ToString();
                 MoneyBox.Text = china.Nations[NationList.SelectedIndex].Money.ToString();
+                ArmyBox.Text = china.Nations[NationList.SelectedIndex].Army.ToString();
                 //更新辖地信息
                 DistrictList_Load(china.Nations[NationList.SelectedIndex]);
             }

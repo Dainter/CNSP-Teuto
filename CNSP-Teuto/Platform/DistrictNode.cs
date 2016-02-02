@@ -145,14 +145,11 @@ namespace CNSP.Platform
             }
             return ResultList;
         }
-        //人口增殖 返回征兵数
-        public int PopulationBreed(double dubBreed, double dubDraft)
+        //人口增殖 返回新人口数
+        public int PopulationBreed(double dubBreed)
         {
-            int intDraft;
-
-            intDraft = Convert.ToInt32(intPolulation * dubDraft);
-            intPolulation = Convert.ToInt32(intPolulation * (1.0 + dubBreed)) - intDraft;
-            return intDraft;
+            intPolulation = Convert.ToInt32(intPolulation * (1.0 + dubBreed));
+            return intPolulation;
         }
         //商业交换 返回税收数
         public double Economy(double dubArgiRate, double dubCommRate, double dubTaxRate)
@@ -165,8 +162,9 @@ namespace CNSP.Platform
             {
                 dubCommerce += node.Trade;
             }
-            dubTax = dubCommerce * dubTaxRate;
-            dubCommerce -= dubTax;
+            dubTax = (dubCommerce + dubHarvest) * dubTaxRate;
+            dubCommerce *= (1 - dubTaxRate);
+            dubHarvest *= (1 - dubTaxRate);
             if (iPiece == 0)
             {
                 dubTrade = 0;
@@ -177,7 +175,13 @@ namespace CNSP.Platform
             }
             return dubTax;
         }
-        //
+        //征兵 返回征召兵员数量
+        public int Draft(double dubDraft)
+        {
+            int intDraft = (int)Math.Ceiling(intPolulation * dubDraft);
+            intPolulation -= intDraft;
+            return intDraft;
+        }
 
     }
 }
