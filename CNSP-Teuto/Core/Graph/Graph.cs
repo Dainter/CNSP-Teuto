@@ -177,11 +177,11 @@ namespace CNSP.Core.Graph
         public List<IfCoreNode> GetNodesOfType(NodeTypeEnum type)
         {
             List<IfCoreNode> ResultList = new List<IfCoreNode>();
-
+            //遍历节点列表
             foreach (IfCoreNode curNode in NodeList)
             {
                 if (curNode.Type.Type == type)
-                {
+                {//将符合type要求的节点加入返回结果列表
                     ResultList.Add(curNode);
                 }
             }

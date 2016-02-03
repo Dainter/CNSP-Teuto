@@ -38,11 +38,10 @@
             this.SaveMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.InfoMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.DegreeDistMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.LogDistMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.OptionMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.OperateMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.StartMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.PauseMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.ResetMI = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助HToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ContentMI = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -79,11 +78,13 @@
             this.NationInfoGroup = new System.Windows.Forms.GroupBox();
             this.NationLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.LeaderBox = new System.Windows.Forms.TextBox();
-            this.ArmyBox = new System.Windows.Forms.TextBox();
             this.MoneyBox = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.ArmyBox = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.PopulationBox = new System.Windows.Forms.TextBox();
             this.DistrictInfoGroup = new System.Windows.Forms.GroupBox();
             this.DistrictLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
@@ -95,9 +96,18 @@
             this.DistComm = new System.Windows.Forms.TextBox();
             this.DistTrade = new System.Windows.Forms.TextBox();
             this.DistrictList = new System.Windows.Forms.ListBox();
+            this.tabRank = new System.Windows.Forms.TabPage();
+            this.tabRankLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.PopuRankBox = new System.Windows.Forms.ListBox();
+            this.DistRankBox = new System.Windows.Forms.ListBox();
+            this.MoneyRankBox = new System.Windows.Forms.ListBox();
+            this.ArmyRankBox = new System.Windows.Forms.ListBox();
             this.StartTimer = new System.Windows.Forms.Timer(this.components);
-            this.label16 = new System.Windows.Forms.Label();
-            this.PopulationBox = new System.Windows.Forms.TextBox();
+            this.RoundTimer = new System.Windows.Forms.Timer(this.components);
             this.MainMenu.SuspendLayout();
             this.MainLayout.SuspendLayout();
             this.TabList.SuspendLayout();
@@ -114,13 +124,15 @@
             this.NationLayout.SuspendLayout();
             this.DistrictInfoGroup.SuspendLayout();
             this.DistrictLayout.SuspendLayout();
+            this.tabRank.SuspendLayout();
+            this.tabRankLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainMenu
             // 
             this.MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NetworkMI,
-            this.InfoMI,
+            this.OperateMI,
             this.帮助HToolStripMenuItem1});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
@@ -181,42 +193,39 @@
             this.ExitMI.Size = new System.Drawing.Size(189, 22);
             this.ExitMI.Text = "退出(&X)";
             // 
-            // InfoMI
+            // OperateMI
             // 
-            this.InfoMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.DegreeDistMI,
-            this.LogDistMI,
-            this.toolStripSeparator1,
-            this.OptionMI});
-            this.InfoMI.Name = "InfoMI";
-            this.InfoMI.Size = new System.Drawing.Size(56, 21);
-            this.InfoMI.Text = "信息(&I)";
+            this.OperateMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StartMI,
+            this.PauseMI,
+            this.ResetMI});
+            this.OperateMI.Name = "OperateMI";
+            this.OperateMI.Size = new System.Drawing.Size(60, 21);
+            this.OperateMI.Text = "操作(&A)";
             // 
-            // DegreeDistMI
+            // StartMI
             // 
-            this.DegreeDistMI.Name = "DegreeDistMI";
-            this.DegreeDistMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.DegreeDistMI.Size = new System.Drawing.Size(205, 22);
-            this.DegreeDistMI.Text = "网络度分布(&D)";
+            this.StartMI.Name = "StartMI";
+            this.StartMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.StartMI.Size = new System.Drawing.Size(161, 22);
+            this.StartMI.Text = "开始(&S)";
+            this.StartMI.Click += new System.EventHandler(this.StartMI_Click);
             // 
-            // LogDistMI
+            // PauseMI
             // 
-            this.LogDistMI.Name = "LogDistMI";
-            this.LogDistMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
-            this.LogDistMI.Size = new System.Drawing.Size(205, 22);
-            this.LogDistMI.Text = "网络对数分布(&L)";
+            this.PauseMI.Name = "PauseMI";
+            this.PauseMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.PauseMI.Size = new System.Drawing.Size(161, 22);
+            this.PauseMI.Text = "暂停(&P)";
+            this.PauseMI.Click += new System.EventHandler(this.PauseMI_Click);
             // 
-            // toolStripSeparator1
+            // ResetMI
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(202, 6);
-            // 
-            // OptionMI
-            // 
-            this.OptionMI.Name = "OptionMI";
-            this.OptionMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.OptionMI.Size = new System.Drawing.Size(205, 22);
-            this.OptionMI.Text = "选项(&O)";
+            this.ResetMI.Name = "ResetMI";
+            this.ResetMI.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.ResetMI.Size = new System.Drawing.Size(161, 22);
+            this.ResetMI.Text = "重置(&R)";
+            this.ResetMI.Click += new System.EventHandler(this.ResetMI_Click);
             // 
             // 帮助HToolStripMenuItem1
             // 
@@ -298,7 +307,7 @@
             this.TabPage2.Location = new System.Drawing.Point(4, 22);
             this.TabPage2.Name = "TabPage2";
             this.TabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.TabPage2.Size = new System.Drawing.Size(211, 424);
+            this.TabPage2.Size = new System.Drawing.Size(211, 426);
             this.TabPage2.TabIndex = 1;
             this.TabPage2.Text = "网络信息";
             // 
@@ -333,7 +342,7 @@
             this.TableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.TableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.TableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.TableLayoutPanel2.Size = new System.Drawing.Size(205, 418);
+            this.TableLayoutPanel2.Size = new System.Drawing.Size(205, 420);
             this.TableLayoutPanel2.TabIndex = 0;
             // 
             // TypeBox
@@ -473,6 +482,7 @@
             // 
             this.TabMain.Controls.Add(this.TabStructure);
             this.TabMain.Controls.Add(this.TabInfo);
+            this.TabMain.Controls.Add(this.tabRank);
             this.TabMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TabMain.Location = new System.Drawing.Point(228, 3);
             this.TabMain.Name = "TabMain";
@@ -629,15 +639,23 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "国家君主:";
             // 
-            // label14
+            // LeaderBox
             // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(21, 155);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(46, 13);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "总兵力:";
+            this.LeaderBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.LeaderBox.Location = new System.Drawing.Point(73, 13);
+            this.LeaderBox.Name = "LeaderBox";
+            this.LeaderBox.ReadOnly = true;
+            this.LeaderBox.Size = new System.Drawing.Size(104, 20);
+            this.LeaderBox.TabIndex = 3;
+            // 
+            // MoneyBox
+            // 
+            this.MoneyBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.MoneyBox.Location = new System.Drawing.Point(73, 105);
+            this.MoneyBox.Name = "MoneyBox";
+            this.MoneyBox.ReadOnly = true;
+            this.MoneyBox.Size = new System.Drawing.Size(104, 20);
+            this.MoneyBox.TabIndex = 5;
             // 
             // label15
             // 
@@ -649,14 +667,15 @@
             this.label15.TabIndex = 2;
             this.label15.Text = "国库存款:";
             // 
-            // LeaderBox
+            // label14
             // 
-            this.LeaderBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.LeaderBox.Location = new System.Drawing.Point(73, 13);
-            this.LeaderBox.Name = "LeaderBox";
-            this.LeaderBox.ReadOnly = true;
-            this.LeaderBox.Size = new System.Drawing.Size(104, 20);
-            this.LeaderBox.TabIndex = 3;
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(21, 155);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(46, 13);
+            this.label14.TabIndex = 1;
+            this.label14.Text = "总兵力:";
             // 
             // ArmyBox
             // 
@@ -667,14 +686,24 @@
             this.ArmyBox.Size = new System.Drawing.Size(104, 20);
             this.ArmyBox.TabIndex = 4;
             // 
-            // MoneyBox
+            // label16
             // 
-            this.MoneyBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.MoneyBox.Location = new System.Drawing.Point(73, 105);
-            this.MoneyBox.Name = "MoneyBox";
-            this.MoneyBox.ReadOnly = true;
-            this.MoneyBox.Size = new System.Drawing.Size(104, 20);
-            this.MoneyBox.TabIndex = 5;
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(21, 62);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(46, 13);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "总人口:";
+            // 
+            // PopulationBox
+            // 
+            this.PopulationBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.PopulationBox.Location = new System.Drawing.Point(73, 59);
+            this.PopulationBox.Name = "PopulationBox";
+            this.PopulationBox.ReadOnly = true;
+            this.PopulationBox.Size = new System.Drawing.Size(104, 20);
+            this.PopulationBox.TabIndex = 7;
             // 
             // DistrictInfoGroup
             // 
@@ -800,29 +829,130 @@
             this.DistrictList.TabIndex = 7;
             this.DistrictList.SelectedIndexChanged += new System.EventHandler(this.DistrictList_SelectedIndexChanged);
             // 
+            // tabRank
+            // 
+            this.tabRank.BackColor = System.Drawing.SystemColors.Control;
+            this.tabRank.Controls.Add(this.tabRankLayout);
+            this.tabRank.Location = new System.Drawing.Point(4, 22);
+            this.tabRank.Name = "tabRank";
+            this.tabRank.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRank.Size = new System.Drawing.Size(499, 426);
+            this.tabRank.TabIndex = 2;
+            this.tabRank.Text = "实力排序";
+            // 
+            // tabRankLayout
+            // 
+            this.tabRankLayout.ColumnCount = 4;
+            this.tabRankLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tabRankLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tabRankLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tabRankLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tabRankLayout.Controls.Add(this.label17, 0, 0);
+            this.tabRankLayout.Controls.Add(this.label19, 1, 0);
+            this.tabRankLayout.Controls.Add(this.label20, 2, 0);
+            this.tabRankLayout.Controls.Add(this.label21, 3, 0);
+            this.tabRankLayout.Controls.Add(this.PopuRankBox, 0, 1);
+            this.tabRankLayout.Controls.Add(this.DistRankBox, 1, 1);
+            this.tabRankLayout.Controls.Add(this.MoneyRankBox, 2, 1);
+            this.tabRankLayout.Controls.Add(this.ArmyRankBox, 3, 1);
+            this.tabRankLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabRankLayout.Location = new System.Drawing.Point(3, 3);
+            this.tabRankLayout.Name = "tabRankLayout";
+            this.tabRankLayout.RowCount = 2;
+            this.tabRankLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tabRankLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tabRankLayout.Size = new System.Drawing.Size(493, 420);
+            this.tabRankLayout.TabIndex = 0;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(3, 6);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(58, 13);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "人口排序:";
+            // 
+            // label19
+            // 
+            this.label19.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(126, 6);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(58, 13);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "地区排序:";
+            // 
+            // label20
+            // 
+            this.label20.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(249, 6);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(58, 13);
+            this.label20.TabIndex = 2;
+            this.label20.Text = "经济排序:";
+            // 
+            // label21
+            // 
+            this.label21.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(372, 6);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(58, 13);
+            this.label21.TabIndex = 3;
+            this.label21.Text = "兵力排序:";
+            // 
+            // PopuRankBox
+            // 
+            this.PopuRankBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PopuRankBox.FormattingEnabled = true;
+            this.PopuRankBox.Location = new System.Drawing.Point(3, 29);
+            this.PopuRankBox.MultiColumn = true;
+            this.PopuRankBox.Name = "PopuRankBox";
+            this.PopuRankBox.Size = new System.Drawing.Size(117, 388);
+            this.PopuRankBox.TabIndex = 4;
+            // 
+            // DistRankBox
+            // 
+            this.DistRankBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DistRankBox.FormattingEnabled = true;
+            this.DistRankBox.Location = new System.Drawing.Point(126, 29);
+            this.DistRankBox.MultiColumn = true;
+            this.DistRankBox.Name = "DistRankBox";
+            this.DistRankBox.Size = new System.Drawing.Size(117, 388);
+            this.DistRankBox.TabIndex = 5;
+            // 
+            // MoneyRankBox
+            // 
+            this.MoneyRankBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MoneyRankBox.FormattingEnabled = true;
+            this.MoneyRankBox.Location = new System.Drawing.Point(249, 29);
+            this.MoneyRankBox.MultiColumn = true;
+            this.MoneyRankBox.Name = "MoneyRankBox";
+            this.MoneyRankBox.Size = new System.Drawing.Size(117, 388);
+            this.MoneyRankBox.TabIndex = 6;
+            // 
+            // ArmyRankBox
+            // 
+            this.ArmyRankBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ArmyRankBox.FormattingEnabled = true;
+            this.ArmyRankBox.Location = new System.Drawing.Point(372, 29);
+            this.ArmyRankBox.MultiColumn = true;
+            this.ArmyRankBox.Name = "ArmyRankBox";
+            this.ArmyRankBox.Size = new System.Drawing.Size(118, 388);
+            this.ArmyRankBox.TabIndex = 7;
+            // 
             // StartTimer
             // 
             this.StartTimer.Enabled = true;
             this.StartTimer.Tick += new System.EventHandler(this.StartTimer_Tick);
             // 
-            // label16
+            // RoundTimer
             // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(21, 62);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(46, 13);
-            this.label16.TabIndex = 6;
-            this.label16.Text = "总人口:";
-            // 
-            // PopulationBox
-            // 
-            this.PopulationBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.PopulationBox.Location = new System.Drawing.Point(73, 59);
-            this.PopulationBox.Name = "PopulationBox";
-            this.PopulationBox.ReadOnly = true;
-            this.PopulationBox.Size = new System.Drawing.Size(104, 20);
-            this.PopulationBox.TabIndex = 7;
+            this.RoundTimer.Interval = 2000;
+            this.RoundTimer.Tick += new System.EventHandler(this.RoundTimer_Tick);
             // 
             // FrmMain
             // 
@@ -857,6 +987,9 @@
             this.DistrictInfoGroup.ResumeLayout(false);
             this.DistrictLayout.ResumeLayout(false);
             this.DistrictLayout.PerformLayout();
+            this.tabRank.ResumeLayout(false);
+            this.tabRankLayout.ResumeLayout(false);
+            this.tabRankLayout.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -872,11 +1005,10 @@
         internal System.Windows.Forms.ToolStripMenuItem SaveMI;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         internal System.Windows.Forms.ToolStripMenuItem ExitMI;
-        internal System.Windows.Forms.ToolStripMenuItem InfoMI;
-        internal System.Windows.Forms.ToolStripMenuItem DegreeDistMI;
-        internal System.Windows.Forms.ToolStripMenuItem LogDistMI;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem OptionMI;
+        internal System.Windows.Forms.ToolStripMenuItem OperateMI;
+        internal System.Windows.Forms.ToolStripMenuItem StartMI;
+        internal System.Windows.Forms.ToolStripMenuItem PauseMI;
+        private System.Windows.Forms.ToolStripMenuItem ResetMI;
         internal System.Windows.Forms.ToolStripMenuItem 帮助HToolStripMenuItem1;
         internal System.Windows.Forms.ToolStripMenuItem ContentMI;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
@@ -932,6 +1064,17 @@
         private System.Windows.Forms.TextBox MoneyBox;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox PopulationBox;
+        private System.Windows.Forms.TabPage tabRank;
+        private System.Windows.Forms.TableLayoutPanel tabRankLayout;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ListBox PopuRankBox;
+        private System.Windows.Forms.ListBox DistRankBox;
+        private System.Windows.Forms.ListBox MoneyRankBox;
+        private System.Windows.Forms.ListBox ArmyRankBox;
+        internal System.Windows.Forms.Timer RoundTimer;
     }
 }
 

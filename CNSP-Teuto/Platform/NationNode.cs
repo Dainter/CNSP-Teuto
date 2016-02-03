@@ -19,7 +19,7 @@ namespace CNSP.Platform
         Color colFrame;
         int intTotalPopulation;
         int intTotalArmy;
-        double dubTotalMoney;
+        int intTotalMoney;
         double dubBreed;//出生率
         double dubArgiRate; //农业生产率
         double dubCommRate;//商业生产率
@@ -71,11 +71,11 @@ namespace CNSP.Platform
                 return intTotalArmy;
             }
         }
-        public double Money
+        public int Money
         {
             get
             {
-                return dubTotalMoney;
+                return intTotalMoney;
             }
         }
         public List<DistrictNode> Districts
@@ -145,7 +145,7 @@ namespace CNSP.Platform
         {
             intTotalPopulation = 0;
             intTotalArmy = 0;
-            dubTotalMoney = 20000.0;
+            intTotalMoney = 20000;
             dubBreed = 0.01;
             dubArgiRate = 0.002;
             dubCommRate = 0.006;
@@ -164,51 +164,7 @@ namespace CNSP.Platform
                 }
             }
         }
-        //每年回合开始前操作
-        public void PreRound(int iRound)
-        {
-            double dTax;
-            int iPopu;
-            //
-            iPopu = 0;
-            dTax = 0.0;
-            foreach (DistrictNode node in DistrictsList)
-            {
-                iPopu += node.PopulationBreed(dubBreed);
-                dTax += node.Economy(dubArgiRate, dubCommRate, dubTaxRate);
-            }
-            intTotalPopulation = iPopu;
-            dubTotalMoney += dTax;
-            PayMaintenance();
-        }
-        //支付薪饷
-        void PayMaintenance()
-        {
-            dubTotalMoney -= intTotalArmy * dubPayRate; 
-        }
-        //征召部队
-        void Draft()
-        {
-            double dubActuralDraftRate;
-            int intNewDraft = 0;
-            //征兵率制定
-            dubActuralDraftRate = DraftPolicy();
-            //征召部队
-            foreach (IfCoreEdge edge in OutBound)
-            {
-                if (edge.Type.Type == EdgeTypeEnum.Rule)
-                {
-                    intNewDraft += ((DistrictNode)edge.End).Draft(dubActuralDraftRate);
-                }
-            }
-            intTotalArmy += intNewDraft;
-            intTotalPopulation -= intNewDraft;
-        }
-        //制订征兵率，1.国库盈余 2.征兵上限修正
-        double DraftPolicy()
-        {
-            return 0.005;
-        }
+
         //比较两个国家编号
         public static int CompareNationsByNumber(NationNode x, NationNode y)
         {
@@ -394,6 +350,82 @@ namespace CNSP.Platform
                 }
             }
         }
+
+        public void Round(int iRound)
+        {
+            //自然事件：人口增长，商业运作
+            PreRound();
+            //征兵
+            Draft();
+            //决策阶段，(发展，防御，扩张)
+            //发展：保持和平为主，外交积极讲和，国内积极建设
+            //防御：保持现有土地为主，外交不主动宣战，也不讲和，国内均衡建设，加强征兵。
+            //扩张（无脑）：拓展现有土地，外交主动宣战，国内不建设，加强征兵，攻击获得最大利益城池。
+            //扩张（巧妙）：拓展现有土地，外交被动宣战，国内均衡建设，均衡征兵，防御为主，攻击最容易得手城池。
+
+
+            //外交事件（敌对，中立 未来加上联盟）
+            //第一阶段全是敌对状态
+
+
+            //国内建设：财政支出选择（全力发展，均衡发展，不发展），发展地选择（平均，重点）
+
+            //交战：战力分配，部队调度，战斗发起，土地兼并
+
+        }
+
+        //每年回合开始前操作
+        void PreRound()
+        {
+            double dTax;
+            int iPopu;
+            //
+            iPopu = 0;
+            dTax = 0.0;
+            foreach (DistrictNode node in DistrictsList)
+            {
+                iPopu += node.PopulationBreed(dubBreed);
+                dTax += node.Economy(dubArgiRate, dubCommRate, dubTaxRate);
+            }
+            intTotalPopulation = iPopu;
+            intTotalMoney += (int)dTax;
+            PayMaintenance();
+        }
+        //支付薪饷
+        void PayMaintenance()
+        {
+            intTotalMoney -= (int)(intTotalArmy * dubPayRate); 
+        }
+        
+        //征召部队
+        void Draft()
+        {
+            double dubActuralDraftRate;
+            int intNewDraft = 0;
+            //征兵率制定
+            dubActuralDraftRate = DraftPolicy();
+            //征召部队
+            foreach (IfCoreEdge edge in OutBound)
+            {
+                if (edge.Type.Type == EdgeTypeEnum.Rule)
+                {
+                    intNewDraft += ((DistrictNode)edge.End).Draft(dubActuralDraftRate);
+                }
+            }
+            intTotalArmy += intNewDraft;
+            intTotalPopulation -= intNewDraft;
+        }
+        //制订征兵率，1.国库盈余 2.征兵上限修正
+        double DraftPolicy()
+        {
+            return 0.005;
+        }
+        
+        
+        
+        
+        
+        
 
     }
 }

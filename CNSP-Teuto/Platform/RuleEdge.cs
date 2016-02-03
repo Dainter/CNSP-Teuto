@@ -33,6 +33,7 @@ namespace CNSP.Platform
         public RuleEdge(XmlElement xNode)
             : base(new EdgeType(EdgeTypeEnum.Rule), xNode)
         {
+            //取出Loyalty字段取值
             string strLoyalty = GetText(xNode, "Loyalty");
             if (strLoyalty == "")
             {

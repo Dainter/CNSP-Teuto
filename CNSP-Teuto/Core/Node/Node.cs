@@ -99,10 +99,13 @@ namespace CNSP.Core.Node
             string xPos, yPos;
             int intX, intY;
             this.intNodeNum = intMaxNodeNum;
+            //取出制定标签的Inner Text
             xPos = GetText(xNode, "Xpos");
             yPos = GetText(xNode, "Ypos");
+            //转化为int
             intX = Convert.ToInt32(xPos);
             intY = Convert.ToInt32(yPos);
+            //赋值与初始化
             this.potLoc = new Point(intX, intY);
             this.nodeType = newType;
             this.intSaveIndex = this.intNodeNum;
@@ -118,10 +121,11 @@ namespace CNSP.Core.Node
             {
                 return "";
             }
+            //遍历子节点列表
             foreach (XmlElement xNode in curNode.ChildNodes)
             {
                 if (xNode.Name == sLabel)
-                {
+                {//查找和指定内容相同的标签，返回其Innner Text
                     return xNode.InnerText;
                 }
             }
@@ -135,15 +139,18 @@ namespace CNSP.Core.Node
             {
                 return false;
             }
-            if (newEdge.Start.Number != intNodeNum || newEdge.End.Number == intNodeNum)//检测条件：当前节点与目标节点不相连，且目标节点不是当前节点
+            //检测条件：当前边的起始节点是本节点，且终止节点不是本节点
+            if (newEdge.Start.Number != intNodeNum || newEdge.End.Number == intNodeNum)
             {
                 return false;
             }
+            //如果OutbOund已经包含该边
             if (OutBoundContainsEdge(newEdge) == true)
             {
                 return false;
             }
-            OutLink.Add(newEdge);   //向Links中加入新项目  
+            //向Links中加入新项目  
+            OutLink.Add(newEdge);   
             return true;
         }
 
@@ -154,14 +161,17 @@ namespace CNSP.Core.Node
             {
                 return false;
             }
-            if (newEdge.End.Number != intNodeNum || newEdge.Start.Number == intNodeNum)//检测条件：当前节点与目标节点不相连，且目标节点不是当前节点
+            //检测条件：当前边的起始节点不是本节点，且终止节点是本节点
+            if (newEdge.End.Number != intNodeNum || newEdge.Start.Number == intNodeNum)
             {
                 return false;
             }
+            //如果Inbound包含该边则不注册
             if (InBoundContainsEdge(newEdge) == true)
             {
                 return false;
             }
+            //加入新边
             InLink.Add(newEdge);
             return true;
         }
@@ -173,10 +183,12 @@ namespace CNSP.Core.Node
             {
                 return false;
             }
-            if (curEdge.Start.Number != intNodeNum || curEdge.End.Number == intNodeNum)//检测条件：当前节点与目标节点不相连，且目标节点不是当前节点
+            //检测条件：当前边的起始节点是本节点，且终止节点不是本节点
+            if (curEdge.Start.Number != intNodeNum || curEdge.End.Number == intNodeNum)
             {
                 return false;
             }
+            //如果OutbOund不包含该边则退出
             if (OutBoundContainsEdge(curEdge) == false)
             {
                 return false;
@@ -189,22 +201,29 @@ namespace CNSP.Core.Node
         public List<IfCoreEdge> ClearEdge()
         {
             List<IfCoreEdge> EdgeList = new List<IfCoreEdge>();
+            //首先将OutBound中所有连边的终止节点中注销该边
             foreach (IfCoreEdge edge in this.OutBound)
             {
                 edge.End.UnRegisterInbound(edge);
                 edge.Start = null;
                 edge.End = null;
+                //当前边加入返回结果列表
                 EdgeList.Add(edge);
             }
+            //从OutBound中清除所有边
             this.OutBound.Clear();
+            //首先将InBound中所有连边的起始节点中去除该边
             foreach (IfCoreEdge edge in this.InBound)
             {
                 edge.Start.RemoveEdge(edge);
                 edge.Start = null;
                 edge.End = null;
+                //当前边加入返回结果列表
                 EdgeList.Add(edge);
             }
+            //从InBound中清除所有边
             this.InBound.Clear();
+            //返回本节点涉及的连边列表
             return EdgeList;
         }
 
@@ -215,10 +234,12 @@ namespace CNSP.Core.Node
             {
                 return false;
             }
+            //检测条件：当前边的起始节点不是本节点，且终止节点是本节点
             if (curEdge.End.Number != intNodeNum || curEdge.Start.Number == intNodeNum)//检测条件：当前节点与目标节点不相连，且目标节点不是当前节点
             {
                 return false;
             }
+            //如果Inbound不包含当前边则不注销
             if (InBoundContainsEdge(curEdge) == false)
             {
                 return false;

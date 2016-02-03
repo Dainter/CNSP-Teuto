@@ -54,7 +54,6 @@ namespace CNSP
             china = new Empire();
             //XmlDocument doc = china.EmpireData.ToXML();
             //doc.Save("1.xml");
-            china.Round();
             return;
         }
 
@@ -112,6 +111,53 @@ namespace CNSP
             DistComm.Text = dist.Commerce.ToString();
             DistTrade.Text = dist.Trade.ToString();
  
+        }
+
+        private void Round()
+        {
+            china.Round();
+            //每回合结束后的统计
+            Statistic();
+        }
+
+        private void Statistic()
+        {
+            china.Statistic(ref PopuRankBox, "人口");
+            china.Statistic(ref DistRankBox, "地区");
+            china.Statistic(ref MoneyRankBox, "经济");
+            china.Statistic(ref ArmyRankBox, "兵力");
+        }
+
+        private void RoundTimer_Tick(object sender, EventArgs e)
+        {
+            Round();
+        }
+
+        private void StartMI_Click(object sender, EventArgs e)
+        {
+            if (RoundTimer.Enabled == false)
+            {
+                RoundTimer.Enabled = true;
+            }
+        }
+
+        private void PauseMI_Click(object sender, EventArgs e)
+        {
+            if (RoundTimer.Enabled == true)
+            {
+                RoundTimer.Enabled = false;
+            }
+        }
+
+        private void ResetMI_Click(object sender, EventArgs e)
+        {
+            if (RoundTimer.Enabled == true)
+            {
+                RoundTimer.Enabled = false;
+            }
+            china = new Empire();
+            GraphicReset();
+            NationList_Load();
         }
 
         /*

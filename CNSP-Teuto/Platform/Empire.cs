@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 using CNSP.Core.Graph;
 using CNSP.Core.Node;
 using CNSP.Core.Edge;
@@ -15,11 +16,11 @@ namespace CNSP.Platform
 {
     public class Empire
     {
-        int intRound;
-        public Graph EmpireData;
-        List<KingNode> KingsList;
-        List<NationNode> NationsList;
-        List<DistrictNode> DistrictsList;
+        int intRound;                               //回合计数器
+        public Graph EmpireData;            //图数据库对象
+        List<KingNode> KingsList;           //国王列表
+        List<NationNode> NationsList;   //国家列表
+        List<DistrictNode> DistrictsList;   //地区列表
         //属性///////////////////////
         public List<NationNode> Nations
         {
@@ -41,8 +42,10 @@ namespace CNSP.Platform
         {
             EmpireData = new Graph();
             IfIOStrategy reader = new XMLStrategy();
+            //读入数据库
             EmpireData = reader.ReadFile("0.xml");
             intRound = 1;
+            //所有节点初始化
             Initialize();
         }
         //初始化，生成节点
@@ -90,6 +93,7 @@ namespace CNSP.Platform
             LinePen.Width = 1;
             foreach (IfCoreEdge edge in EmpireData.Edges)
             {
+                //绘制地区之间连边
                 if (edge.Type.Type == EdgeTypeEnum.Connect)
                 {
                     locStart = edge.Start.Location;
@@ -98,6 +102,7 @@ namespace CNSP.Platform
                 }
             }
             LinePen.Dispose();
+            //绘制所有地区节点
             foreach (DistrictNode curNode in this.DistrictsList)
             {
                 nodeImage = DrawNode(curNode, curNode.Nation);
@@ -134,20 +139,60 @@ namespace CNSP.Platform
         //每年操作
         public void Round()
         {
+            //执行各国的回合
             foreach(NationNode node in this.NationsList)
             {
-                node.PreRound(intRound);
+                node.Round(intRound);
             }
-            Statistic();
-        }
 
-        private void Statistic()
+        }
+        //数据统计与排序
+        public void Statistic(ref ListBox curListBox, string sOption)
         {
-            NationsList.Sort(NationNode.CompareNationsByPopulation);
-            NationsList.Sort(NationNode.CompareNationsByDistrict);
-            NationsList.Sort(NationNode.CompareNationsByMoney);
-            NationsList.Sort(NationNode.CompareNationsByArmy);
+            switch (sOption)
+            {
+                case "人口":
+                    NationsList.Sort(NationNode.CompareNationsByPopulation);
+                    break;
+                case "地区":
+                    NationsList.Sort(NationNode.CompareNationsByDistrict);
+                    break;
+                case "经济":
+                    NationsList.Sort(NationNode.CompareNationsByMoney);
+                    break;
+                case "兵力":
+                    NationsList.Sort(NationNode.CompareNationsByArmy);
+                    break;
+                default:
+                    break;
+            }
+            LoadRankResult(ref curListBox, sOption);
             NationsList.Sort(NationNode.CompareNationsByNumber);
+        }
+        //载入排序结果
+        private void LoadRankResult(ref ListBox curListBox, string sOption)
+        {
+            curListBox.Items.Clear();
+            foreach (NationNode node in NationsList)
+            {
+                switch (sOption)
+                {
+                    case "人口":
+                        curListBox.Items.AddRange(new object[] { node.Name + " "+node.Population.ToString()});
+                        break;
+                    case "地区":
+                        curListBox.Items.AddRange(new object[] { node.Name + " " + node.Districts.Count.ToString() });
+                        break;
+                    case "经济":
+                        curListBox.Items.AddRange(new object[] { node.Name + " " + node.Money.ToString() });
+                        break;
+                    case "兵力":
+                        curListBox.Items.AddRange(new object[] { node.Name + " " + node.Army.ToString() });
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
