@@ -52,6 +52,8 @@ namespace CNSP
         private void Form1_Load(object sender, EventArgs e)
         {
             china = new Empire();
+
+            //Network_Init();
             //XmlDocument doc = china.EmpireData.ToXML();
             //doc.Save("1.xml");
             return;
@@ -160,24 +162,77 @@ namespace CNSP
             NationList_Load();
         }
 
-        /*
+        
         void Network_Init()
         {
+            Add(53,52);
 
+            Add(54, 52);
+            Add(54, 53);
+
+            Add(55, 52);
+            Add(55, 53);
+            Add(55, 54);
+
+            Add(56, 52);
+            Add(56, 53);
+            Add(56, 54);
+            Add(56, 55);
+
+            Add(57, 52);
+            Add(57, 53);
+            Add(57, 54);
+            Add(57, 55);
+            Add(57, 56);
+
+            Add(58, 52);
+            Add(58, 53);
+            Add(58, 54);
+            Add(58, 55);
+            Add(58, 56);
+            Add(58, 57);
+
+            Add(59, 52);
+            Add(59, 53);
+            Add(59, 54);
+            Add(59, 55);
+            Add(59, 56);
+            Add(59, 57);
+            Add(59, 58);
+
+            Add(60, 52);
+            Add(60, 53);
+            Add(60, 54);
+            Add(60, 55);
+            Add(60, 56);
+            Add(60, 57);
+            Add(60, 58);
+            Add(60, 59);
+
+            Add(61, 52);
+            Add(61, 53);
+            Add(61, 54);
+            Add(61, 55);
+            Add(61, 56);
+            Add(61, 57);
+            Add(61, 58);
+            Add(61, 59);
+            Add(61, 60);
         }
         
         void Add(int iStart, int iEnd)
         {
+            AddEdge(iEnd, iStart);
             AddEdge(iStart, iEnd);
         }
 
         void AddEdge(int iStart, int iEnd)
         {
             IfCoreNode nodeStart, nodeEnd;
-            RuleEdge newEdge = new RuleEdge();
-            nodeStart = china.GetNodeAtIndex(iStart);
-            nodeEnd = china.GetNodeAtIndex(iEnd);
-            china.AddEdge(nodeStart, nodeEnd, newEdge);
+            DiplomacyEdge newEdge = new DiplomacyEdge();
+            nodeStart = china.EmpireData.GetNodeAtIndex(iStart);
+            nodeEnd = china.EmpireData.GetNodeAtIndex(iEnd);
+            china.EmpireData.AddEdge(nodeStart, nodeEnd, newEdge);
         }
 
         void Save(Graph zhanguo)
@@ -190,6 +245,6 @@ namespace CNSP
         {
             IfIOStrategy reader = new XMLStrategy();
             return reader.ReadFile("0.xml");
-        }*/
+        }
     }
 }

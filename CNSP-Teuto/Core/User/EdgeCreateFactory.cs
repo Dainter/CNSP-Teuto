@@ -18,6 +18,10 @@ namespace CNSP.Core.User
             {
                 case EdgeTypeEnum.Rule:
                     return new RuleEdge(xNode);
+                case EdgeTypeEnum.Connect:
+                    return new ConnectEdge(xNode);
+                case EdgeTypeEnum.Diplomacy:
+                    return new DiplomacyEdge(xNode);
                 default:
                     return new Edge.Edge(type);
             }

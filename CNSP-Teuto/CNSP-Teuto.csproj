@@ -66,6 +66,7 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Platform\DiplomacyEdge.cs" />
     <Compile Include="Platform\GeneralNode.cs" />
     <Compile Include="Platform\ConnectEdge.cs" />
     <Compile Include="Platform\DistrictNode.cs" />

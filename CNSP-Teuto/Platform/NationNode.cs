@@ -27,6 +27,7 @@ namespace CNSP.Platform
         double dubPayRate;//维护费
         double dubEquiptRate;//装备费
         double dubDraftRate;  //征兵率
+        List<NationNode> EnemyList;
         List<DistrictNode> DistrictsList;
         //属性///////////////////////////////
         public string Name
@@ -83,6 +84,13 @@ namespace CNSP.Platform
             get
             {
                 return DistrictsList;
+            }
+        }
+        public List<NationNode> Enemies
+        {
+            get
+            {
+                return EnemyList;
             }
         }
         //方法///////////////////////////////
@@ -154,6 +162,7 @@ namespace CNSP.Platform
             dubPayRate = 0.02;
             dubEquiptRate = 0.1;
             DistrictsList = new List<DistrictNode>();
+            EnemyList = new List<NationNode>();
             foreach (IfCoreEdge edge in OutBound)
             {
                 if (edge.Type.Type == EdgeTypeEnum.Rule)
@@ -161,6 +170,13 @@ namespace CNSP.Platform
                     DistrictsList.Add((DistrictNode)(edge.End));
                     ((DistrictNode)edge.End).Initialize(dubArgiRate, dubCommRate);
                     intTotalPopulation += ((DistrictNode)edge.End).Population;
+                }
+                else if (edge.Type.Type == EdgeTypeEnum.Diplomacy)
+                {
+                    if (((DiplomacyEdge)edge).State == "敌对")
+                    {
+                        EnemyList.Add((NationNode)(edge.End));
+                    }
                 }
             }
         }
@@ -350,9 +366,13 @@ namespace CNSP.Platform
                 }
             }
         }
-
+        //每回合操作
         public void Round(int iRound)
         {
+            if (iRound > 1)
+            {
+                CalThreaten(GetFrontierDistricts());
+            }
             //自然事件：人口增长，商业运作
             PreRound();
             //征兵
@@ -396,7 +416,6 @@ namespace CNSP.Platform
         {
             intTotalMoney -= (int)(intTotalArmy * dubPayRate); 
         }
-        
         //征召部队
         void Draft()
         {
@@ -420,12 +439,259 @@ namespace CNSP.Platform
         {
             return 0.005;
         }
-        
-        
-        
-        
-        
-        
 
+        //返回所有相邻他国地区列表
+        List<DistrictNode> GetNeighborDistricts()
+        {
+            List<DistrictNode> ResultList = new List<DistrictNode>();
+            //遍历本国所有地区
+            foreach (DistrictNode node in Districts)
+            {
+                //遍历该地区的周边地区
+                foreach (IfCoreEdge edge in node.OutBound)
+                {
+                    if (edge.Type.Type == EdgeTypeEnum.Connect)
+                    {
+                        //如果该地区为本国领地则跳到下一地区
+                        if (DistrictsList.Contains((DistrictNode)(edge.End)) == true)
+                        {
+                            continue;
+                        }
+                        //如果是外国地区，且不存在于列表中则加入列表
+                        if (ResultList.Contains((DistrictNode)(edge.End)) == false)
+                        {
+                            ResultList.Add((DistrictNode)(edge.End));
+                        }
+                    }
+                }
+            }
+            return ResultList;
+        }
+        //返回所有相邻敌国地区列表
+        List<DistrictNode> GetNeighborDistrictsAtWar()
+        {
+            List<DistrictNode> ResultList = new List<DistrictNode>();
+            //遍历本国所有地区
+            foreach (DistrictNode node in Districts)
+            {
+                //遍历该地区的周边地区
+                foreach (IfCoreEdge edge in node.OutBound)
+                {
+                    if (edge.Type.Type == EdgeTypeEnum.Connect)
+                    {
+                        //如果该地区为本国领地则跳到下一地区
+                        if (DistrictsList.Contains((DistrictNode)(edge.End)) == true)
+                        {
+                            continue;
+                        }
+                        //如果该地区属于敌国
+                        if (Enemies.Contains(((DistrictNode)(edge.End)).Nation) == true)
+                        {
+                            continue;
+                        }
+                        //如果是外国地区，且不存在于列表中则加入列表
+                        if (ResultList.Contains((DistrictNode)(edge.End)) == false)
+                        {
+                            ResultList.Add((DistrictNode)(edge.End));
+                        }
+                    }
+                }
+            }
+            return ResultList;
+        }
+        //返回所有相邻他国列表
+        List<NationNode> GetNeighborNations()
+        {
+            List<NationNode> ResultList = new List<NationNode>();
+            //遍历本国所有地区
+            foreach (DistrictNode node in Districts)
+            {
+                //遍历该地区的周边地区
+                foreach (IfCoreEdge edge in node.OutBound)
+                {
+                    if (edge.Type.Type == EdgeTypeEnum.Connect)
+                    {
+                        //如果该地区为本国领地则跳到下一地区
+                        if (DistrictsList.Contains((DistrictNode)(edge.End)) == true)
+                        {
+                            continue;
+                        }
+                        //如果是外国地区，且不存在于列表中则加入列表
+                        if (ResultList.Contains(((DistrictNode)(edge.End)).Nation) == false)
+                        {
+                            ResultList.Add(((DistrictNode)(edge.End)).Nation);
+                        }
+                    }
+                }
+            }
+            return ResultList;
+        }
+        //返回所有相邻敌国列表
+        List<NationNode> GetNeighborNationsAtWar()
+        {
+            List<NationNode> ResultList = new List<NationNode>();
+            //遍历本国所有地区
+            foreach (DistrictNode node in Districts)
+            {
+                //遍历该地区的周边地区
+                foreach (IfCoreEdge edge in node.OutBound)
+                {
+                    if (edge.Type.Type == EdgeTypeEnum.Connect)
+                    {
+                        //如果该地区为本国领地则跳到下一地区
+                        if (DistrictsList.Contains((DistrictNode)(edge.End)) == true)
+                        {
+                            continue;
+                        }
+                        //如果该地区从属国家不是敌国则跳到下一地区
+                        if (Enemies.Contains(((DistrictNode)(edge.End)).Nation) == false)
+                        {
+                            continue;
+                        }
+                        //如果是外国地区，且不存在于列表中则加入列表
+                        if (ResultList.Contains(((DistrictNode)(edge.End)).Nation) == false)
+                        {
+                            ResultList.Add(((DistrictNode)(edge.End)).Nation);
+                        }
+                    }
+                }
+            }
+            return ResultList;
+        }
+        //返回所有和外国相邻地区列表
+        List<DistrictNode> GetFrontierDistricts()
+        {
+            List<DistrictNode> ResultList = new List<DistrictNode>();
+            //遍历本国所有地区
+            foreach (DistrictNode node in Districts)
+            {
+                //遍历该地区的周边地区
+                foreach (IfCoreEdge edge in node.OutBound)
+                {
+                    if (edge.Type.Type == EdgeTypeEnum.Connect)
+                    {
+                        //如果该地区为本国领地则跳到下一地区
+                        if (DistrictsList.Contains((DistrictNode)(edge.End)) == true)
+                        {
+                            continue;
+                        }
+                        //如果是外国地区，且不存在于列表中则加入列表
+                        if (ResultList.Contains(node) == false)
+                        {
+                            ResultList.Add(node);
+                            break;
+                        }
+                    }
+                }
+            }
+            return ResultList;
+        }
+        //返回所有和敌国相邻地区列表
+        List<DistrictNode> GetFrontierDistrictsAtWar()
+        {
+            List<DistrictNode> ResultList = new List<DistrictNode>();
+            //遍历本国所有地区
+            foreach (DistrictNode node in Districts)
+            {
+                //遍历该地区的周边地区
+                foreach (IfCoreEdge edge in node.OutBound)
+                {
+                    if (edge.Type.Type == EdgeTypeEnum.Connect)
+                    {
+                        //如果该地区为本国领地则跳到下一地区
+                        if (DistrictsList.Contains((DistrictNode)(edge.End)) == true)
+                        {
+                            continue;
+                        }
+                        //如果该地区所述国家不是敌国则跳到下一地区
+                        if (Enemies.Contains(((DistrictNode)(edge.End)).Nation) == false)
+                        {
+                            continue;
+                        }
+                        //如果是外国地区，且不存在于列表中则加入列表
+                        if (ResultList.Contains(node) == false)
+                        {
+                            ResultList.Add(node);
+                            break;
+                        }
+                    }
+                }
+            }
+            return ResultList;
+        }
+        //计算列表中地区的价值，并选出价值最大的地区。
+        List<double> CalValueOfDistricts(List<DistrictNode> target)
+        {
+            List<double> ResultList = new List<double>();
+            double dubEconomy = 0.0;
+            int intInner, intOuter;
+            //遍历邻近地区
+            foreach (DistrictNode node in target)
+            {
+                //计算经济总量
+                dubEconomy = node.Harvest + node.Commerce;
+                intInner = intOuter = 0;
+                //统计连边
+                foreach (IfCoreEdge edge in node.OutBound)
+                {
+                    if (edge.Type.Type != EdgeTypeEnum.Connect)
+                    {
+                        continue;
+                    }
+                    if (DistrictsList.Contains((DistrictNode)edge.End) == true)
+                    {
+                        intInner++;
+                    }
+                    else
+                    {
+                        intOuter++;
+                    }
+                }
+                if (intOuter == 0)
+                {
+                    dubEconomy = 0.0;
+                }
+                else
+                {
+                    //计算地区价值
+                    dubEconomy *= intInner / (intOuter * 1.0);
+                }
+                ResultList.Add(dubEconomy);
+            }
+            return ResultList;
+        }
+        //计算列表中地区威胁度，并返回
+        List<double> CalThreaten(List<DistrictNode> target)
+        {
+            List<double> ResultList = new List<double>();
+            double dubEconomy = 0.0;
+            int intInner, intOuter;
+            //遍历本国边境
+            foreach (DistrictNode node in target)
+            {
+                dubEconomy = node.Harvest + node.Commerce;
+                intInner = intOuter = 0;
+                //统计连边
+                foreach (IfCoreEdge edge in node.OutBound)
+                {
+                    if (edge.Type.Type != EdgeTypeEnum.Connect)
+                    {
+                        continue;
+                    }
+                    if (DistrictsList.Contains((DistrictNode)edge.End) == true)
+                    {
+                        intInner++;
+                    }
+                    else
+                    {
+                        intOuter++;
+                    }
+                }
+                //计算本国地区威胁度
+                dubEconomy *= intOuter / ((intInner + 1) * 1.0);
+                ResultList.Add(dubEconomy);
+            }
+            return ResultList;
+        }
     }
 }

@@ -10,9 +10,7 @@ namespace CNSP.Core.User
         Connect = 0x01,
         Rule = 0x02,
         Lead = 0x04,
-        Neutral = 0x10,
-        Allies = 0x12,
-        Hostile = 0x14,
+        Diplomacy = 0x10,
     }
     public class EdgeType //连边类型类
     {
@@ -48,12 +46,8 @@ namespace CNSP.Core.User
                     return EdgeTypeEnum.Rule;
                 case "率领":
                     return EdgeTypeEnum.Lead;
-                case "中立":
-                    return EdgeTypeEnum.Neutral;
-                case "联盟":
-                    return EdgeTypeEnum.Allies;
-                case "敌对":
-                    return EdgeTypeEnum.Hostile;
+                case "外交":
+                    return EdgeTypeEnum.Diplomacy;
                 default:
                     return 0;
             }
@@ -69,12 +63,8 @@ namespace CNSP.Core.User
                     return "统治";
                 case EdgeTypeEnum.Lead:
                     return "率领";
-                case EdgeTypeEnum.Neutral:
-                    return "中立";
-                case EdgeTypeEnum.Allies:
-                    return "联盟";
-                case EdgeTypeEnum.Hostile:
-                    return "敌对";
+                case EdgeTypeEnum.Diplomacy:
+                    return "外交";
                 default:
                     return "??";
             }

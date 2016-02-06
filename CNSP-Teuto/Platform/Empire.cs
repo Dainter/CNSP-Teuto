@@ -144,7 +144,7 @@ namespace CNSP.Platform
             {
                 node.Round(intRound);
             }
-
+            intRound++;
         }
         //数据统计与排序
         public void Statistic(ref ListBox curListBox, string sOption)
